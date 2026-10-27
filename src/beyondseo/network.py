@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import base64
 import hashlib
 import http.client
 import ipaddress
@@ -15,7 +16,8 @@ import zlib
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
-from urllib.parse import quote, unquote_plus, urljoin, urlsplit, urlunsplit
+from urllib.parse import quote, unquote, unquote_plus, urljoin, urlsplit, urlunsplit
+from urllib.request import getproxies_environment, proxy_bypass_environment
 
 from .diagnostics import challenge_signal, classify_access
 
@@ -243,6 +245,71 @@ class Transport:
         self.config = config
         self.limiter = RateLimiter()
 
+    def _connect(self, url, infos, deadline):
+        """Tunnel only to an already validated IP; never let a proxy resolve a target."""
+        target = urlsplit(url)
+        proxies = getproxies_environment()
+        proxy_url = proxies.get(target.scheme)
+        if proxy_url and not proxy_bypass_environment(target.netloc, proxies):
+            try:
+                proxy = urlsplit(proxy_url if "://" in proxy_url else "http://" + proxy_url)
+                port = proxy.port or 80
+                if (
+                    proxy.scheme != "http"
+                    or not proxy.hostname
+                    or proxy.path not in ("", "/")
+                    or proxy.query
+                    or proxy.fragment
+                ):
+                    raise ValueError
+            except ValueError:
+                raise ValueError("unsupported_proxy_configuration") from None
+            last = None
+            for _, _, _, _, address in infos:
+                sock = None
+                try:
+                    sock = socket.create_connection(
+                        (proxy.hostname, port), max(0.1, deadline - time.monotonic())
+                    )
+                    ip = address[0]
+                    host = "[" + ip + "]" if ":" in ip else ip
+                    authority = host + ":" + str(address[1])
+                    headers = ["CONNECT " + authority + " HTTP/1.1", "Host: " + authority]
+                    if proxy.username is not None:
+                        auth = unquote(proxy.username) + ":" + unquote(proxy.password or "")
+                        headers.append(
+                            "Proxy-Authorization: Basic " + base64.b64encode(auth.encode()).decode()
+                        )
+                    sock.sendall(("\r\n".join(headers) + "\r\n\r\n").encode("ascii"))
+                    response = http.client.HTTPResponse(sock, method="CONNECT")
+                    response.begin()
+                    status = response.status
+                    response.close()
+                    if status != 200:
+                        raise ValueError("proxy_connect_denied_http_" + str(status))
+                    return sock
+                except (OSError, http.client.HTTPException) as exc:
+                    last = exc
+                    if sock:
+                        sock.close()
+                except ValueError:
+                    if sock:
+                        sock.close()
+                    raise
+            raise last or OSError("proxy_connection_failed")
+
+        last = None
+        for family, kind, proto, _, addr in infos:
+            candidate = socket.socket(family, kind, proto)
+            candidate.settimeout(max(0.1, deadline - time.monotonic()))
+            try:
+                candidate.connect(addr)
+                return candidate
+            except OSError as exc:
+                last = exc
+                candidate.close()
+        raise last or OSError("connect failed")
+
     def once(self, url, request_headers=None, method="GET"):
         """Connect to a verified resolved IP, retaining the original host for TLS SNI."""
         if method not in ("GET", "OPTIONS"):
@@ -250,20 +317,7 @@ class Transport:
         p = urlsplit(url)
         deadline = time.monotonic() + self.config.timeout
         infos = addresses(url, self.config.allow_private)
-        sock = None
-        last = None
-        for family, kind, proto, _, addr in infos:
-            candidate = socket.socket(family, kind, proto)
-            candidate.settimeout(max(0.1, deadline - time.monotonic()))
-            try:
-                candidate.connect(addr)
-                sock = candidate
-                break
-            except OSError as e:
-                last = e
-                candidate.close()
-        if sock is None:
-            raise last or OSError("connect failed")
+        sock = self._connect(url, infos, deadline)
         conn = http.client.HTTPConnection(
             p.hostname, p.port or (443 if p.scheme == "https" else 80), timeout=self.config.timeout
         )

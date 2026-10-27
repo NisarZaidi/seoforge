@@ -145,6 +145,8 @@ Version 2.1 adds crawl settings and output fields. Start a fresh output folder f
 | Chromium download times out or returns a gateway error | Keep the download error separate from skill registration. Check the host's permitted network access to the browser download URL; do not repeat downloads indefinitely. Use `--http-only` setup and `--mode http` for reachable pages while browser setup is unavailable. This does not verify JavaScript content. |
 | Browser launch fails on Linux | Install Chromium system libraries using the command above |
 | Target DNS lookup fails | Record the failed hostname and error; check the hostname and the execution environment's DNS/network access. If `robots.txt` cannot be fetched, do not bypass the robots check or describe the page's content as inspected. |
+| Proxy returns HTTP 407 | Check proxy credentials and access with the workspace administrator. Do not paste credentials into chat, reports or command history. |
+| Proxy tunnel denied or unsupported proxy | BeyondSEO supports HTTP proxy CONNECT to a locally resolved, verified destination IP. Confirm the proxy permits CONNECT to that IP and port; HTTPS-to-proxy and SOCKS are not supported. No direct fallback is attempted when a configured proxy fails. |
 | TLS certificate error | Check the system certificate store and network configuration; certificate verification stays enabled |
 | Output already contains a crawl | Use `--resume` with matching settings, or choose a fresh output folder |
 | `crawl.lock exists` | Check its recorded process ID; stop an active crawl before removing a stale lock |
@@ -164,3 +166,9 @@ Next: [browser options](browser.md), [command reference](../references/crawler.m
 ## Ongoing reviews and hosting access
 
 After the first crawl, read `readiness.md` for plain-language next steps. The [operations guide](operations.md) covers snapshot comparisons, bounded review loops, checking supplied backlinks, and staged website edits over local files, SFTP or FTPS. SFTP needs the optional `sftp` package extra; FTPS uses Python’s standard library.
+
+### Proxy-enabled environments
+
+BeyondSEO's native HTTP transport reads the `http_proxy`, `https_proxy` and `no_proxy` environment settings (including their standard uppercase variants). For a configured HTTP proxy it sends a CONNECT request to a locally resolved and validated target IP, then retains the original hostname for HTTPS certificate verification. Requests still follow scope, robots and redirect checks. Proxy basic authentication is passed to the proxy only; do not include proxy URLs or credentials in reports.
+
+Local target DNS must work: proxy-side hostname resolution alone is not supported because BeyondSEO cannot independently verify which address the proxy will reach. Some proxies do not permit IP-based CONNECT or tunnels to HTTP ports. Those cases remain blocked; use the host's permitted browser or supplied evidence, or ask the workspace administrator about approved DNS and proxy policy. HTTP proxies expose CONNECT metadata and any proxy credentials to the proxy connection; use a trusted network. Browser availability, installation downloads and host permissions are separate checks.

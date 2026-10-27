@@ -51,6 +51,12 @@ def failure_detail(error="", *, status=0, headers=None, body=b"", context="netwo
     code = None
     if "discovery_request_budget_exhausted" in lower:
         code = "budget_exhausted"
+    elif "proxy_connect_denied_http_407" in lower:
+        code = "proxy_authentication_required"
+    elif "proxy_connect_denied_http_" in lower:
+        code = "proxy_tunnel_denied"
+    elif "unsupported_proxy_configuration" in lower:
+        code = "unsupported_proxy_configuration"
     elif "robots_rule_disallowed" in lower:
         code = "robots_restricted"
     elif lower.startswith("robots_"):

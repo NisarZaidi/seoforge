@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.9.2 — Easier connections, clearer next steps
+
+27 October 2026
+
+- Use configured HTTP proxies for native requests via CONNECT to a locally resolved and validated destination IP, while preserving TLS verification, address and robots checks. Honor `no_proxy`; report proxy authentication and tunnel denials separately. Proxy-only remote DNS remains unsupported.
+- Explain the direct ZIP upload route for GitHub DNS failures, and distinguish a saved skill from runtime and network readiness.
+
+
 ## 2.9.1 — Saved audits, without leftover file locks
 
 25 September 2026

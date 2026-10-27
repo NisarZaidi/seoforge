@@ -2,7 +2,7 @@
 name: beyondseo
 description: Audit websites, apply authorised SEO improvements and plan content, competitors and backlinks with evidence, design checks and optional project monitoring.
 metadata:
-  version: 2.9.1
+  version: 2.9.2
   author: Muhammad Tahir Ashraf — Beyond Tahir
 ---
 
@@ -12,7 +12,7 @@ Help people understand their website, improve it and see what changed. Use every
 
 ## Run in the available host
 
-For an installation request, follow [the host-specific guide](docs/agent-installation.md), including Cursor, Lovable workspace imports and agents managing Vercel projects. Confirm registration in the host's skill list separately from the crawler's runtime check. A format check or successful folder copy is not proof of workspace acceptance. Report the actual failed operation and error when a save or setup fails. Read [permissions and runtime requirements](docs/permissions.md) for package review and hosted execution. Installation does not authorize a website crawl, account access or publishing.
+For an installation request, follow [the host-specific guide](docs/agent-installation.md), including Cursor, Lovable workspace imports and agents managing Vercel projects. Confirm registration in the host's skill list separately from the crawler's runtime check. A format check or successful folder copy is not proof of workspace acceptance. For GitHub DNS or proxy errors, follow that guide’s specific upload and network guidance; report skill registration and live crawler access separately. Report the actual failed operation and error when a save or setup fails. Read [permissions and runtime requirements](docs/permissions.md) for package review and hosted execution. Installation does not authorize a website crawl, account access or publishing.
 
 Read [questions and capabilities](docs/questions.md) for introductions. Resolve the skill root from this file. Use the host's available file and shell tools; no particular connector or tool name is required. Check `python3 /absolute/skill/path/scripts/run.py doctor` (Windows: `py -3`) in the actual execution environment before crawling. The launcher supports a local `.venv` or an explicit `--runtime` in a host-approved execution folder. If Python, networking or browser execution is unavailable, use supplied evidence and label the limitation; never simulate a successful crawl. Load only references needed for the request. The native CLI uses no model tokens or API keys; assistant reasoning still uses the host's model.
 

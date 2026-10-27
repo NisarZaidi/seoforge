@@ -531,7 +531,7 @@ BeyondSEO brings that practical approach to search: inspect the real website, ma
 ### Contributors
 
 - **Muhammad Tahir Ashraf (Beyond Tahir)** — creator, product direction and maintenance.
-- **[Codex by OpenAI](https://github.com/openai/codex)** — AI contributor assisting with implementation, debugging, testing and documentation.
+- **[Codex by OpenAI](https://github.com/codex)** — AI contributor assisting with implementation, debugging, testing and documentation.
 
 ### Stay connected
 

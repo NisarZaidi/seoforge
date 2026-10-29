@@ -1,6 +1,6 @@
 # Keyword Discovery
 
-Keyword discovery in BeyondSEO is a business-intent mapping process, not a volume dump.
+Keyword discovery in SeoForge is a business-intent mapping process, not a volume dump.
 
 ## Purpose
 

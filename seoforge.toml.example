@@ -1,0 +1,17 @@
+# Copy to seoforge.toml or .seoforge.toml in your project root.
+
+[seoforge]
+output_dir = "seoforge-runs"
+audit_depth = "standard"          # quick | standard | deep
+# max_pages = 15                  # overrides audit_depth budget when set
+max_depth = 6
+workers = 4
+delay = 0.5
+timeout = 20.0
+retries = 2
+include_www = true
+respect_robots = true
+render_mode = "auto"              # auto | http | browser
+user_agent = "SeoForge/0.2 (+https://github.com/NisarZaidi/seoforge)"
+allow_private = false
+quiet = false

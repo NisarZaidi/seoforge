@@ -12,7 +12,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: BeyondSEO version and environment
+      label: SeoForge version and environment
       placeholder: "2.5.1; cloud Work / Windows / macOS / Linux; assistant version if known"
     validations:
       required: true
@@ -34,4 +34,4 @@ body:
     id: method
     attributes:
       label: Installation method
-      description: Name the downloaded asset or paste the command/prompt you used. State whether BeyondSEO appears in the skill list and whether doctor ran.
+      description: Name the downloaded asset or paste the command/prompt you used. State whether SeoForge appears in the skill list and whether doctor ran.

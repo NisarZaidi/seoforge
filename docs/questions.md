@@ -1,12 +1,12 @@
 # Meet your SEO house
 
-BeyondSEO helps you understand what your website says, what search systems can read, what customers still need answered and what would make your business more credible. It brings the evidence, specialist methods, writing and follow-up work into one reusable workflow.
+SeoForge helps you understand what your website says, what search systems can read, what customers still need answered and what would make your business more credible. It brings the evidence, specialist methods, writing and follow-up work into one reusable workflow.
 
 ## What makes this a complete SEO house?
 
 A complete audit follows the work from discovery to improvement: crawl the website, inspect its content and technical signals, compare named competitors, verify reputation sources, draft useful changes and produce a plan with clear priorities. Later reviews compare saved evidence to see what changed.
 
-The crawler supplies observations. The specialist playbooks guide the assistant's decisions. The editing tools can apply reviewed text changes on compatible hosting. This combination makes BeyondSEO useful through the whole engagement, rather than ending with a list of SEO checks.
+The crawler supplies observations. The specialist playbooks guide the assistant's decisions. The editing tools can apply reviewed text changes on compatible hosting. This combination makes SeoForge useful through the whole engagement, rather than ending with a list of SEO checks.
 
 | Work area | What you can receive |
 |---|---|
@@ -25,11 +25,11 @@ See the [full capability map](../references/capabilities.md) for executable feat
 
 The native CLI makes **no language-model API calls**, requires **no API keys**, and consumes **no model tokens** when run directly. It fetches websites and uses local Python and optional Chromium. Installation downloads dependencies; live crawling needs internet access. Your hardware, hosting and bandwidth still have their ordinary costs.
 
-When an AI assistant reads the skill, reasons about an audit or writes copy, its model usage still applies. BeyondSEO adds no separate model account, scraping subscription or paid SEO-data dependency. A local-model host may avoid paid model API usage if it supports your model and the tools needed; configure and check that runtime through the host’s own setup guidance. “No required API keys for BeyondSEO” is the accurate promise.
+When an AI assistant reads the skill, reasons about an audit or writes copy, its model usage still applies. SeoForge adds no separate model account, scraping subscription or paid SEO-data dependency. A local-model host may avoid paid model API usage if it supports your model and the tools needed; configure and check that runtime through the host’s own setup guidance. “No required API keys for SeoForge” is the accurate promise.
 
 ## Why isn't my website showing in AI answers?
 
-Start by separating what we can inspect from what we have actually observed. BeyondSEO can check access, readable content, clear answers, business identity and supporting reputation evidence. Actual inclusion needs dated questions and captured answers from the named engine. A crawl alone cannot establish why an engine omitted a site.
+Start by separating what we can inspect from what we have actually observed. SeoForge can check access, readable content, clear answers, business identity and supporting reputation evidence. Actual inclusion needs dated questions and captured answers from the named engine. A crawl alone cannot establish why an engine omitted a site.
 
 Expect a friendly explanation such as: “Your service page explains the offer, but it leaves cost and implementation questions unanswered. Let's add a clear process, realistic pricing factors and a verified case study, then test the same questions again.” That is an action to test, not a promise of a citation.
 

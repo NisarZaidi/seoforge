@@ -1,6 +1,6 @@
 # Technical SEO Audit
 
-This file defines BeyondSEO's technical SEO audit process.
+This file defines SeoForge's technical SEO audit process.
 
 Technical SEO answers one question:
 
@@ -37,7 +37,7 @@ Use any available:
 Website URL
 Sitemap XML
 Robots.txt
-BeyondSEO local crawl output
+SeoForge local crawl output
 Native crawler
 Screaming Frog export
 Sitebulb export

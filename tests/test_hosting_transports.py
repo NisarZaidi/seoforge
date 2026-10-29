@@ -18,7 +18,7 @@ class HostingTransportTests(unittest.TestCase):
 
         import paramiko
 
-        from beyondseo.publishing import RemoteStore, apply_change, stage
+        from seoforge.cli.publishing import RemoteStore, apply_change, stage
 
         class Auth(paramiko.ServerInterface):
             def check_auth_password(self, u, p):
@@ -99,19 +99,19 @@ class HostingTransportTests(unittest.TestCase):
 
             thread = threading.Thread(target=serve, daemon=True)
             thread.start()
-            for env_name in ("BEYONDSEO_TEST_USERNAME", "BEYONDSEO_TEST_PASSWORD"):
+            for env_name in ("SEOFORGE_TEST_USERNAME", "SEOFORGE_TEST_PASSWORD"):
                 old_value = os.environ.get(env_name)
                 if old_value is None:
                     self.addCleanup(os.environ.pop, env_name, None)
                 else:
                     self.addCleanup(os.environ.__setitem__, env_name, old_value)
-            os.environ["BEYONDSEO_TEST_USERNAME"] = "fixture"
-            os.environ["BEYONDSEO_TEST_PASSWORD"] = "fixture-only"
+            os.environ["SEOFORGE_TEST_USERNAME"] = "fixture"
+            os.environ["SEOFORGE_TEST_PASSWORD"] = "fixture-only"
             store = RemoteStore(
                 {
                     "type": "sftp",
-                    "username_env": "BEYONDSEO_TEST_USERNAME",
-                    "password_env": "BEYONDSEO_TEST_PASSWORD",
+                    "username_env": "SEOFORGE_TEST_USERNAME",
+                    "password_env": "SEOFORGE_TEST_PASSWORD",
                     "host": "127.0.0.1",
                     "port": port,
                     "root": "/www",
@@ -130,7 +130,7 @@ class HostingTransportTests(unittest.TestCase):
                     == "rolled_back"
                 )
                 assert (root / "www/index.html").read_text() == "before"
-                assert not list((root / "www").glob("*.beyondseo-*"))
+                assert not list((root / "www").glob("*.seoforge-*"))
             finally:
                 store.close()
                 done.set()
@@ -163,7 +163,7 @@ class HostingTransportTests(unittest.TestCase):
         from pyftpdlib.handlers import TLS_FTPHandler
         from pyftpdlib.servers import FTPServer
 
-        from beyondseo.publishing import RemoteStore, apply_change, stage
+        from seoforge.cli.publishing import RemoteStore, apply_change, stage
 
         self.addCleanup(logging.disable, logging.root.manager.disable)
         logging.disable(logging.CRITICAL)
@@ -229,18 +229,18 @@ class HostingTransportTests(unittest.TestCase):
                 target=lambda: server.serve_forever(timeout=0.05, handle_exit=False), daemon=True
             )
             thread.start()
-            for env_name in ("BEYONDSEO_TEST_USERNAME", "BEYONDSEO_TEST_PASSWORD"):
+            for env_name in ("SEOFORGE_TEST_USERNAME", "SEOFORGE_TEST_PASSWORD"):
                 old_value = os.environ.get(env_name)
                 if old_value is None:
                     self.addCleanup(os.environ.pop, env_name, None)
                 else:
                     self.addCleanup(os.environ.__setitem__, env_name, old_value)
-            os.environ["BEYONDSEO_TEST_USERNAME"] = "fixture"
-            os.environ["BEYONDSEO_TEST_PASSWORD"] = "fixture-only"
+            os.environ["SEOFORGE_TEST_USERNAME"] = "fixture"
+            os.environ["SEOFORGE_TEST_PASSWORD"] = "fixture-only"
             profile = {
                 "type": "ftps",
-                "username_env": "BEYONDSEO_TEST_USERNAME",
-                "password_env": "BEYONDSEO_TEST_PASSWORD",
+                "username_env": "SEOFORGE_TEST_USERNAME",
+                "password_env": "SEOFORGE_TEST_PASSWORD",
                 "host": "127.0.0.1",
                 "port": port,
                 "root": "/www",
@@ -253,7 +253,7 @@ class HostingTransportTests(unittest.TestCase):
                     pass
                 context = ssl.create_default_context(cafile=str(certfile))
                 assert context.verify_mode == ssl.CERT_REQUIRED and context.check_hostname
-                with patch("beyondseo.publishing.ssl.create_default_context", return_value=context):
+                with patch("seoforge.cli.publishing.ssl.create_default_context", return_value=context):
                     store = RemoteStore(profile)
                 try:
                     result = stage(store, "index.html", draft, root / "plan")
@@ -268,7 +268,7 @@ class HostingTransportTests(unittest.TestCase):
                         == "rolled_back"
                     )
                     assert (root / "www/index.html").read_text() == "before"
-                    assert not list((root / "www").glob("*.beyondseo-*"))
+                    assert not list((root / "www").glob("*.seoforge-*"))
                     # A server without this capability must preserve the live file.
                     ReplaceFileSystem.reject_replacement = True
                     refused = stage(store, "index.html", draft, root / "refused-plan")
@@ -278,7 +278,7 @@ class HostingTransportTests(unittest.TestCase):
                     assert (root / "refused-plan/before.txt").read_text() == "before"
                     receipt = json.loads((root / "refused-plan/receipt.json").read_text())
                     assert receipt["status"] == "needs_inspection"
-                    assert not list((root / "www").glob("*.beyondseo-*"))
+                    assert not list((root / "www").glob("*.seoforge-*"))
                 finally:
                     store.close()
             finally:

@@ -1,6 +1,6 @@
 # Toxic Link Risk
 
-This file defines how BeyondSEO identifies risky backlinks.
+This file defines how SeoForge identifies risky backlinks.
 
 ---
 

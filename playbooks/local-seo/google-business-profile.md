@@ -1,6 +1,6 @@
 # Google Business Profile Optimization
 
-This file defines BeyondSEO's Google Business Profile workflow for local SEO.
+This file defines SeoForge's Google Business Profile workflow for local SEO.
 
 GBP can drive calls, directions, bookings, and local trust. For many local businesses, website SEO and GBP must work together.
 

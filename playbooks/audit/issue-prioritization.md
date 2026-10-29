@@ -1,6 +1,6 @@
 # Issue Prioritization
 
-Defines how BeyondSEO ranks SEO issues by impact.
+Defines how SeoForge ranks SEO issues by impact.
 
 ---
 

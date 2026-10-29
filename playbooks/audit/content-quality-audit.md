@@ -1,6 +1,6 @@
 # Content Quality and E-E-A-T Audit
 
-This file defines how BeyondSEO evaluates content quality, topical authority, helpfulness, trust, and E-E-A-T.
+This file defines how SeoForge evaluates content quality, topical authority, helpfulness, trust, and E-E-A-T.
 
 Content quality is not “more words.” It is whether the page gives users and search systems the information, proof, and confidence needed to choose the business.
 

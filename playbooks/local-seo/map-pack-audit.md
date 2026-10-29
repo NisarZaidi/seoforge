@@ -1,6 +1,6 @@
 # Map Pack Audit
 
-This file defines how BeyondSEO evaluates local map-pack competition and opportunity.
+This file defines how SeoForge evaluates local map-pack competition and opportunity.
 
 Map-pack visibility is often the fastest path to calls for local businesses.
 

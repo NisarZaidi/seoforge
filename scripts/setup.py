@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Set up a local BeyondSEO environment from this source checkout."""
+"""Set up a local SeoForge environment from this source checkout."""
 
 import argparse
 import json
@@ -21,7 +21,7 @@ def main():
     )
     args = parser.parse_args()
     if sys.version_info < (3, 10):
-        print("BeyondSEO needs Python 3.10 or newer. Python 3.12 is recommended.", file=sys.stderr)
+        print("SeoForge needs Python 3.10 or newer. Python 3.12 is recommended.", file=sys.stderr)
         return 2
     root = Path(__file__).resolve().parents[1]
     env = args.venv.expanduser().absolute() if args.venv else root / ".venv"
@@ -53,8 +53,8 @@ def main():
     if args.venv:
         from install_skill import install
 
-        with tempfile.TemporaryDirectory(prefix="beyondseo-build-", dir=env) as scratch:
-            copy = Path(scratch) / "beyondseo"
+        with tempfile.TemporaryDirectory(prefix="seoforge-build-", dir=env) as scratch:
+            copy = Path(scratch) / "seoforge"
             install(root, copy)
             subprocess.run([str(python), "-m", "pip", "install", str(copy) + suffix], check=True)
     else:
@@ -91,7 +91,7 @@ def main():
         command.extend(["--runtime", str(env)])
     print("\nCrawler ready for " + ("HTTP mode." if args.http_only else "HTTP and browser mode."))
     print("Check again: " + shell_command([*command, "doctor"]))
-    print("Skill registration is separate; confirm BeyondSEO in your assistant's skill list.")
+    print("Skill registration is separate; confirm SeoForge in your assistant's skill list.")
     return 0
 
 

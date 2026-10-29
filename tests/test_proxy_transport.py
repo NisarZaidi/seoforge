@@ -6,8 +6,8 @@ import time
 import unittest
 from unittest.mock import MagicMock, patch
 
-from beyondseo.diagnostics import failure_detail
-from beyondseo.network import Config, Transport
+from seoforge.analyze.diagnostics import failure_detail
+from seoforge.crawl.network import Config, Transport
 
 
 class ProxyTransportTests(unittest.TestCase):
@@ -50,9 +50,9 @@ class ProxyTransportTests(unittest.TestCase):
         infos = [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("8.8.8.8", 80))]
         with (
             patch.dict("os.environ", {"http_proxy": "http://user:secret@proxy.test:8123"}),
-            patch("beyondseo.network.addresses", return_value=infos),
+            patch("seoforge.crawl.network.addresses", return_value=infos),
             patch(
-                "beyondseo.network.socket.create_connection", return_value=self.client
+                "seoforge.crawl.network.socket.create_connection", return_value=self.client
             ) as connect,
         ):
             response = Transport(Config("http://example.com", delay=0, retries=0)).fetch(
@@ -75,9 +75,9 @@ class ProxyTransportTests(unittest.TestCase):
         context.wrap_socket.side_effect = lambda sock, **kwargs: sock
         with (
             patch.dict("os.environ", {"https_proxy": "http://proxy.test:8123"}),
-            patch("beyondseo.network.addresses", return_value=infos),
-            patch("beyondseo.network.socket.create_connection", return_value=self.client),
-            patch("beyondseo.network.ssl.create_default_context", return_value=context),
+            patch("seoforge.crawl.network.addresses", return_value=infos),
+            patch("seoforge.crawl.network.socket.create_connection", return_value=self.client),
+            patch("seoforge.crawl.network.ssl.create_default_context", return_value=context),
         ):
             result = Transport(Config("https://example.com", delay=0, retries=0)).fetch(
                 "https://example.com/"
@@ -91,8 +91,8 @@ class ProxyTransportTests(unittest.TestCase):
         infos = [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("8.8.8.8", 80))]
         with (
             patch.dict("os.environ", {"http_proxy": "http://user:secret@proxy.test:8123"}),
-            patch("beyondseo.network.addresses", return_value=infos),
-            patch("beyondseo.network.socket.create_connection", return_value=self.client),
+            patch("seoforge.crawl.network.addresses", return_value=infos),
+            patch("seoforge.crawl.network.socket.create_connection", return_value=self.client),
         ):
             result = Transport(Config("http://example.com", delay=0, retries=0)).fetch(
                 "http://example.com/"
@@ -103,8 +103,8 @@ class ProxyTransportTests(unittest.TestCase):
     def test_dns_failure_does_not_fall_back_to_unverified_proxy_dns(self):
         with (
             patch.dict("os.environ", {"https_proxy": "http://proxy.test:8123"}),
-            patch("beyondseo.network.addresses", side_effect=socket.gaierror("DNS unavailable")),
-            patch("beyondseo.network.socket.create_connection") as connect,
+            patch("seoforge.crawl.network.addresses", side_effect=socket.gaierror("DNS unavailable")),
+            patch("seoforge.crawl.network.socket.create_connection") as connect,
         ):
             result = Transport(Config("https://example.com", delay=0, retries=0)).fetch(
                 "https://example.com/"
@@ -116,10 +116,10 @@ class ProxyTransportTests(unittest.TestCase):
         with (
             patch.dict("os.environ", {"https_proxy": "http://proxy.test:8123"}),
             patch(
-                "beyondseo.network.socket.getaddrinfo",
+                "seoforge.crawl.network.socket.getaddrinfo",
                 return_value=[(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("127.0.0.1", 443))],
             ),
-            patch("beyondseo.network.socket.create_connection") as connect,
+            patch("seoforge.crawl.network.socket.create_connection") as connect,
         ):
             result = Transport(Config("https://example.com", delay=0, retries=0)).fetch(
                 "https://example.com/"
@@ -131,7 +131,7 @@ class ProxyTransportTests(unittest.TestCase):
         infos = [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("8.8.8.8", 443))]
         with (
             patch.dict("os.environ", {"https_proxy": "socks5://proxy.test:1080"}),
-            patch("beyondseo.network.addresses", return_value=infos),
+            patch("seoforge.crawl.network.addresses", return_value=infos),
         ):
             result = Transport(Config("https://example.com", delay=0, retries=0)).fetch(
                 "https://example.com/"
@@ -141,8 +141,8 @@ class ProxyTransportTests(unittest.TestCase):
             patch.dict(
                 "os.environ", {"https_proxy": "http://proxy.test:8123", "no_proxy": "example.com"}
             ),
-            patch("beyondseo.network.socket.socket") as direct,
-            patch("beyondseo.network.socket.create_connection") as proxy,
+            patch("seoforge.crawl.network.socket.socket") as direct,
+            patch("seoforge.crawl.network.socket.create_connection") as proxy,
         ):
             direct.return_value = MagicMock()
             transport = Transport(Config("https://example.com"))

@@ -1,8 +1,8 @@
-# BeyondSEO — functionality and skill map
+# SeoForge — functionality and skill map
 
-This describes BeyondSEO’s crawler and the SEO workflows included in the project. The implementation status below distinguishes executable features from agent-guided workflows.
+This describes SeoForge’s crawler and the SEO workflows included in the project. The implementation status below distinguishes executable features from agent-guided workflows.
 
-BeyondSEO is a complete SEO house supported by its own website crawler. The main workflow covers the full website strategy across SEO, AEO, GEO, entity, authority, REO/reputation, local visibility, backlinks and conversion, and produces a practical execution plan. The Python program collects observations; the skill applies specialist methods and business context. Start with [the complete SEO workflow](../playbooks/core/seo-house-workflow.md).
+SeoForge is a complete SEO house supported by its own website crawler. The main workflow covers the full website strategy across SEO, AEO, GEO, entity, authority, REO/reputation, local visibility, backlinks and conversion, and produces a practical execution plan. The Python program collects observations; the skill applies specialist methods and business context. Start with [the complete SEO workflow](../playbooks/core/seo-house-workflow.md).
 
 The backlink catalog preserves 241 PDF rows and groups them into 206 website/community entries. Complete plans select 15 or 20 relevant destinations when supported, with writing briefs, routes, restrictions and timing. [Browse the catalog](../docs/backlink-source-catalog.md) and [posting guide](../docs/backlink-posting-guide.md).
 
@@ -38,7 +38,7 @@ The command-line interface is documented in `crawler.md`. The crawler does not s
 
 ## Branded client reports: implemented
 
-`present` exports local PDF and self-contained HTML using the official BeyondSEO logo, black/red palette, editorial cover, linked contents, tables, charts and evidence notes. Normal setup includes the free ReportLab renderer. `--audit` preserves a native audit’s findings; `--input` presents a reviewed strategy report. The renderer does not research, score or verify supplied claims. The assistant prepares the analysis and checks every rendered page before delivery. See [report content and export](../docs/branded-reports.md) for formats, font limits and HTML fallback.
+`present` exports local PDF and self-contained HTML using the official SeoForge logo, black/red palette, editorial cover, linked contents, tables, charts and evidence notes. Normal setup includes the free ReportLab renderer. `--audit` preserves a native audit’s findings; `--input` presents a reviewed strategy report. The renderer does not research, score or verify supplied claims. The assistant prepares the analysis and checks every rendered page before delivery. See [report content and export](../docs/branded-reports.md) for formats, font limits and HTML fallback.
 
 ## Review and implementation: implemented
 
@@ -48,7 +48,7 @@ See [operations](../docs/operations.md) for readiness reports, source-page backl
 
 The [shared discovery workflow](../docs/discovery-and-competitors.md) collects bounded search leads through native public-search adapters, available host browser/search tools, saved result HTML or supplied URLs/CSVs. The agent chooses from its actual available capabilities; a particular browser or paid search API is not required. Source failures retain evidence and use permitted fallbacks. Search snippets are leads until the native crawler checks the source page.
 
-The [native reputation system](reputation.md) verifies backlinks and page mentions, follows bounded redirect hosts and checks late JavaScript links. It calculates the BeyondSEO Reputation Score with its sensitivity range, confidence and transparent rubric. Own-site sources are excluded; repeated publishers are grouped and related sources cannot supply independent proof. `search-plan` prepares navigation URLs and a requested page budget; it does not execute a search. Native discovery is a bounded sample, never a complete backlink index.
+The [native reputation system](reputation.md) verifies backlinks and page mentions, follows bounded redirect hosts and checks late JavaScript links. It calculates the SeoForge Reputation Score with its sensitivity range, confidence and transparent rubric. Own-site sources are excluded; repeated publishers are grouped and related sources cannot supply independent proof. `search-plan` prepares navigation URLs and a requested page budget; it does not execute a search. Native discovery is a bounded sample, never a complete backlink index.
 
 ## Posting catalog and shortlist helper: implemented
 

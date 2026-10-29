@@ -1,6 +1,6 @@
 # Backlink Audit
 
-This file defines how BeyondSEO audits backlinks and authority.
+This file defines how SeoForge audits backlinks and authority.
 
 Backlinks are not counted equally. One relevant local/niche link can be more valuable than dozens of generic low-quality links.
 
@@ -25,7 +25,7 @@ Which links should be avoided?
 Use any available:
 
 ```text
-BeyondSEO source verification and reputation reports
+SeoForge source verification and reputation reports
 Dated search-result candidates with provenance
 User-provided backlink exports with dates and provider provenance
 GSC links export
@@ -42,7 +42,7 @@ For every supplied data source, record its provider, date, definition and covera
 ## 3. Metrics to Review
 
 ```text
-BeyondSEO estimated source quality, range and coverage
+SeoForge estimated source quality, range and coverage
 Referring domains
 Backlinks
 Dofollow/nofollow ratio

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Copy a clean BeyondSEO skill folder to an explicit destination. No network or archives."""
+"""Copy a clean SeoForge skill folder to an explicit destination. No network or archives."""
 
 import argparse
 import hashlib
@@ -22,11 +22,32 @@ ROOT_FILES = {
     "CHANGELOG.md",
     "CONTRIBUTING.md",
     "SECURITY.md",
-    "CITATION.cff",
+    "seoforge.toml.example",
     ".gitignore",
 }
-ROOT_DIRS = {"src", "scripts", "references", "playbooks", "docs", "assets", "examples"}
-SKIP = {".venv", "__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache", ".git"}
+# Keep the upload under Claude's ~200-file archive limit. Full repo still ships examples/.
+ROOT_DIRS = {"src", "scripts", "references", "playbooks", "docs", "assets"}
+SKIP = {
+    ".venv",
+    "__pycache__",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".mypy_cache",
+    ".git",
+    "industry-playbooks",  # full git keeps these; Claude ZIP stays under 200 files
+    "examples",
+}
+EXCLUDE_NAMES = {
+    "CITATION.cff",
+    "Dockerfile",
+    "seoforge.toml.example",
+    "lovable.md",
+    "PLAYBOOK_DEPTH.md",
+    "source-catalog-provenance.json",
+    "seoforge-banner.png",
+    "CODE_OF_CONDUCT.md",
+    "logging_utils.py",  # library helper; not required at skill runtime
+}
 
 
 def bundle_files(source):
@@ -53,12 +74,14 @@ def bundle_files(source):
             for name in sorted(filenames):
                 if name.startswith(".") or name.endswith((".pyc", ".pyo")):
                     continue
+                if name in EXCLUDE_NAMES:
+                    continue
                 path = Path(directory) / name
                 if path.is_symlink() or not path.is_file():
                     raise ValueError(f"Expected a regular file: {path.relative_to(source)}")
                 files.append(path)
     if not all((source / name) in files for name in ("SKILL.md", "pyproject.toml", "LICENSE")):
-        raise ValueError("Source is missing required BeyondSEO files.")
+        raise ValueError("Source is missing required SeoForge files.")
     return files
 
 
@@ -75,23 +98,23 @@ def host_destination(host, workspace=None, profile_home=None):
         }
         if host not in roots:
             raise ValueError("Use --profile-home for a Hermes profile, not --workspace.")
-        return Path(workspace).expanduser().absolute() / roots[host] / "beyondseo"
+        return Path(workspace).expanduser().absolute() / roots[host] / "seoforge"
     home = Path.home()
     if host == "claude-code":
-        return home / ".claude/skills/beyondseo"
+        return home / ".claude/skills/seoforge"
     if host == "codex":
-        return home / ".agents/skills/beyondseo"
+        return home / ".agents/skills/seoforge"
     if host == "cursor":
-        return home / ".cursor/skills/beyondseo"
+        return home / ".cursor/skills/seoforge"
     if host == "openclaw":
         return (
             Path(os.getenv("OPENCLAW_STATE_DIR") or home / ".openclaw").expanduser()
-            / "skills/beyondseo"
+            / "skills/seoforge"
         )
     if host == "hermes":
         explicit = profile_home or os.getenv("HERMES_HOME")
         if explicit:
-            return Path(explicit).expanduser().absolute() / "skills/beyondseo"
+            return Path(explicit).expanduser().absolute() / "skills/seoforge"
         base = (
             Path(os.getenv("LOCALAPPDATA") or home / "AppData/Local") / "hermes"
             if sys.platform == "win32"
@@ -105,7 +128,7 @@ def host_destination(host, workspace=None, profile_home=None):
                     "Hermes has a named active profile. Supply --profile-home with that profile's "
                     "directory, or run this command from its terminal with HERMES_HOME set."
                 )
-        return base / "skills/beyondseo"
+        return base / "skills/seoforge"
     raise ValueError("Choose claude-code, codex, cursor, hermes or openclaw, or use --dest.")
 
 
@@ -134,7 +157,7 @@ def install(source, destination, dry_run=False, update=False):
     result = {"destination": str(destination), "files": len(files), "dry_run": dry_run}
     backup = None
     if destination.exists():
-        receipt = destination / "beyondseo-install.json"
+        receipt = destination / "seoforge-install.json"
         if not receipt.is_file():
             raise ValueError(
                 "Destination already exists without an installation receipt. Preserve it and choose a new folder."
@@ -171,7 +194,7 @@ def install(source, destination, dry_run=False, update=False):
                 "Destination already exists with a different version. Use --update to keep a backup and replace it."
             )
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid4().hex[:8]
-        backup = destination.parent.parent / "beyondseo-backups" / stamp / destination.name
+        backup = destination.parent.parent / "seoforge-backups" / stamp / destination.name
         result["backup"] = str(backup)
     if dry_run:
         return result
@@ -193,7 +216,7 @@ def install(source, destination, dry_run=False, update=False):
                 raise ValueError(
                     "Source changed during installation. Retry from a stable checkout."
                 )
-        (destination / "beyondseo-install.json").write_text(
+        (destination / "seoforge-install.json").write_text(
             json.dumps({"files_sha256": manifest}, indent=2) + "\n", encoding="utf-8"
         )
         # Keep a local runtime at the same absolute path so its launchers remain
@@ -252,8 +275,8 @@ def main():
         source = Path(__file__).resolve().parents[1]
         validate(source)
         destination = args.dest or host_destination(args.host, args.workspace, args.profile_home)
-        if destination.name != "beyondseo":
-            raise ValueError("Name the destination folder beyondseo so it matches SKILL.md.")
+        if destination.name != "seoforge":
+            raise ValueError("Name the destination folder seoforge so it matches SKILL.md.")
         result = install(source, destination, args.dry_run, args.update)
     except (OSError, ValueError) as error:
         parser.exit(2, f"Installation stopped: {error}\n")
@@ -284,7 +307,7 @@ def main():
             if result.get("runtime_preserved"):
                 print("Existing local runtime preserved. Run scripts/run.py doctor to check it.")
             print("Prepare or refresh crawler dependencies when needed:\n" + shell_command(command))
-        print("Open a new assistant session and check that BeyondSEO appears in its skill list.")
+        print("Open a new assistant session and check that SeoForge appears in its skill list.")
     return 0
 
 

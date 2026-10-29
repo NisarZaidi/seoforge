@@ -1,6 +1,6 @@
 # Link Gap Analysis
 
-This file defines how BeyondSEO compares backlink authority against competitors.
+This file defines how SeoForge compares backlink authority against competitors.
 
 ---
 

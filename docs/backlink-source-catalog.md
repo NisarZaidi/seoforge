@@ -4,7 +4,7 @@
 
 Sheet DR values are unverified, sometimes conflicting, and are not DA. Guidance review checks documented routes, not successful account access or acquired links. Unreviewed entries require research.
 
-The source PDF contains 241 visible rows and 237 distinct URL strings. See the [raw rows](../playbooks/backlink-system/backlink-source-database.csv), [provenance](source-catalog-provenance.json) and [posting guide](backlink-posting-guide.md) for selection, writing, posting and verification steps.
+The source PDF contains 241 visible rows and 237 distinct URL strings. See the [raw rows](../playbooks/backlink-system/backlink-source-database.csv), provenance JSON in the git repo (`docs/source-catalog-provenance.json`), and [posting guide](backlink-posting-guide.md) for selection, writing, posting and verification steps.
 
 | Website | Type | Topics | Review | Free terms | Sheet DR (unverified) | Posting route |
 |---|---|---|---|---|---|---|

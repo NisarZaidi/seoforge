@@ -27,7 +27,7 @@ CAPTURES = {
     "backlinks.json",
     "discovery.json",
     "capabilities.json",
-    "beyondseo-install.json",
+    "seoforge-install.json",
     "storage-state.json",
     "browser-discovery.json",
     "discovery-evidence.json",

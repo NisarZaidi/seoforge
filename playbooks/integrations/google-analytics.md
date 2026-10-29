@@ -1,6 +1,6 @@
 # Google Analytics Workflow
 
-How BeyondSEO should use GA4 data.
+How SeoForge should use GA4 data.
 
 ---
 

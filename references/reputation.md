@@ -1,4 +1,4 @@
-# BeyondSEO Reputation Score
+# SeoForge Reputation Score
 
 Our 0–100 headline measures **how much reputation evidence the observed sample supports**. Model 1.1 uses conservative supported points and an explicit evidence adjustment. Show its provisional/assessed status, sensitivity range, confidence and coverage together. It is not a complete backlink index or a prediction of rankings.
 
@@ -17,22 +17,22 @@ No paid metric, crawling account or crawling service is required. Search discove
 ## Commands
 
 ```sh
-beyondseo discover --query '"Example" -site:example.com' --target https://example.com --out runs/discovery
+seoforge discover --query '"Example" -site:example.com' --target https://example.com --out runs/discovery
 
 # Optional legacy Google navigation plan; this command performs no searches.
-beyondseo search-plan --target https://example.com --brand "Example" --pages 5 --out runs/navigation
+seoforge search-plan --target https://example.com --brand "Example" --pages 5 --out runs/navigation
 
 # Import saved result HTML in actual page order.
-beyondseo search-import --html page1.html page2.html --target https://example.com \
+seoforge search-import --html page1.html page2.html --target https://example.com \
   --query '"Example" -site:example.com' --captured-at 2026-09-14T09:00:00Z --out runs/import
 
 # Verify a source CSV and calculate the estimate.
-beyondseo reputation --sources runs/import/sources.csv --target https://example.com \
+seoforge reputation --sources runs/import/sources.csv --target https://example.com \
   --brand "Example" --alias "Example Company" --related-host related-company.com \
   --max-sources 50 --search-pages 5 --out runs/reputation
 
 # Reassess dated evidence without another network request.
-beyondseo reputation --evidence runs/reputation/verification/backlinks.json \
+seoforge reputation --evidence runs/reputation/verification/backlinks.json \
   --target https://example.com --brand "Example" --out runs/reassessment
 ```
 

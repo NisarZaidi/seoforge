@@ -12,7 +12,7 @@ Create a page inventory separating commercial pages, supporting content, trust/p
 
 ## 2. Cover the whole practice
 
-Paths below are relative to `playbooks/`. Use the matching section of [industry guidance](../industry-playbooks/README.md) and [reporting guidance](../reporting/README.md) when relevant.
+Paths below are relative to `playbooks/`. Use industry guidance in the git checkout (`playbooks/industry-playbooks/`) and [reporting guidance](../reporting/README.md) when relevant.
 
 | Area | Review | Required decision/output | Specialist references |
 |---|---|---|---|

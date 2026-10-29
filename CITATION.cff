@@ -1,18 +1,17 @@
 cff-version: 1.2.0
-message: "If BeyondSEO supports your work, please cite this repository."
-title: "BeyondSEO: Your complete SEO house"
+message: "If SeoForge supports your work, please cite this repository."
+title: "SeoForge: Evidence-first SEO, AEO and GEO toolkit"
 type: software
-version: 2.9.2
+version: 0.2.1
 authors:
-  - family-names: Ashraf
-    given-names: Muhammad Tahir
-    website: https://beyondtahir.com
-repository-code: https://github.com/beyondtahir/beyondseo
-url: https://github.com/beyondtahir/beyondseo
+  - name: SeoForge Contributors
+repository-code: https://github.com/NisarZaidi/seoforge
+url: https://github.com/NisarZaidi/seoforge
 license: MIT
 keywords:
   - SEO
-  - answer engine optimization
+  - AEO
+  - GEO
   - web crawling
   - reputation
   - backlinks

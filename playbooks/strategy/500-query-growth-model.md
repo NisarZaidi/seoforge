@@ -1,6 +1,6 @@
 # 500-Query Growth Model
 
-This file defines how BeyondSEO models lead/query targets such as 500 qualified queries per month.
+This file defines how SeoForge models lead/query targets such as 500 qualified queries per month.
 
 The goal is to prevent fake SEO promises and connect rankings, traffic, local SEO, backlinks, and conversion.
 

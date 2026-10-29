@@ -18,7 +18,7 @@ spec.loader.exec_module(installer)
 
 class PortabilityTests(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix="beyondseo portable ")
+        self.temp = tempfile.TemporaryDirectory(prefix="seoforge portable ")
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
         self.source = self.root / "source checkout"
@@ -47,7 +47,7 @@ class PortabilityTests(unittest.TestCase):
         self.assertEqual((self.dest / "src/module.py").read_bytes(), b"# fixture")
         self.assertTrue((self.source / "runs/private.txt").exists())
         self.assertFalse((self.dest / "runs").exists())
-        manifest = json.loads((self.dest / "beyondseo-install.json").read_text())
+        manifest = json.loads((self.dest / "seoforge-install.json").read_text())
         self.assertEqual(len(manifest["files_sha256"]), 4)
         self.assertFalse((self.dest / ".env").exists())
         self.assertFalse((self.dest / "tests").exists())
@@ -141,13 +141,13 @@ class PortabilityTests(unittest.TestCase):
 
     def test_cursor_project_and_personal_installation(self):
         destination = installer.host_destination("cursor", workspace=self.root)
-        self.assertEqual(destination, self.root / ".cursor/skills/beyondseo")
+        self.assertEqual(destination, self.root / ".cursor/skills/seoforge")
         result = installer.install(self.source, destination)
         self.assertEqual(result["status"], "installed")
         self.assertEqual((destination / "src/module.py").read_text(), "# fixture")
         with patch.object(installer.Path, "home", return_value=self.root):
             self.assertEqual(
-                installer.host_destination("cursor"), self.root / ".cursor/skills/beyondseo"
+                installer.host_destination("cursor"), self.root / ".cursor/skills/seoforge"
             )
         with self.assertRaises(ValueError):
             installer.host_destination("vercel")
@@ -185,22 +185,22 @@ class PortabilityTests(unittest.TestCase):
         }
         with patch.object(installer.os, "getenv", side_effect=lambda key: settings.get(key)):
             self.assertEqual(
-                installer.host_destination("hermes"), self.root / "profile/skills/beyondseo"
+                installer.host_destination("hermes"), self.root / "profile/skills/seoforge"
             )
             self.assertEqual(
-                installer.host_destination("openclaw"), self.root / "state/skills/beyondseo"
+                installer.host_destination("openclaw"), self.root / "state/skills/seoforge"
             )
         self.assertEqual(
             installer.host_destination("claude-code", workspace=self.root),
-            self.root / ".claude/skills/beyondseo",
+            self.root / ".claude/skills/seoforge",
         )
         self.assertEqual(
             installer.host_destination("codex", workspace=self.root),
-            self.root / ".agents/skills/beyondseo",
+            self.root / ".agents/skills/seoforge",
         )
         self.assertEqual(
             installer.host_destination("openclaw", workspace=self.root),
-            self.root / "skills/beyondseo",
+            self.root / "skills/seoforge",
         )
         with (
             patch.object(installer.Path, "home", return_value=self.root),
@@ -223,7 +223,7 @@ class PortabilityTests(unittest.TestCase):
             patch.object(installer.sys, "platform", "win32"),
         ):
             self.assertEqual(
-                installer.host_destination("hermes"), self.root / "hermes/skills/beyondseo"
+                installer.host_destination("hermes"), self.root / "hermes/skills/seoforge"
             )
 
     def test_upload_archive_contains_complete_named_bundle_and_no_dev_fixtures(self):
@@ -235,18 +235,18 @@ class PortabilityTests(unittest.TestCase):
             self.assertEqual(result["format_check"], "passed")
             self.assertEqual(result["host_safety_scan"], "not run")
             with zipfile.ZipFile(archive) as bundle:
-                self.assertEqual({n.split("/")[0] for n in bundle.namelist()}, {"beyondseo"})
+                self.assertEqual({n.split("/")[0] for n in bundle.namelist()}, {"seoforge"})
                 self.assertEqual(len(bundle.namelist()), result["archive_files"])
                 self.assertLessEqual(len(bundle.namelist()), result["max_upload_files"])
-                self.assertIn("beyondseo/src/beyondseo/cli.py", bundle.namelist())
+                self.assertIn("seoforge/src/seoforge/cli/main.py", bundle.namelist())
                 self.assertIn(
-                    "beyondseo/playbooks/backlink-system/posting-sites.json", bundle.namelist()
+                    "seoforge/playbooks/backlink-system/posting-sites.json", bundle.namelist()
                 )
-                self.assertFalse(any(n.startswith("beyondseo/tests/") for n in bundle.namelist()))
+                self.assertFalse(any(n.startswith("seoforge/tests/") for n in bundle.namelist()))
                 bundle.extractall(self.root / "unpacked")
             from validate_skill import validate
 
-            self.assertEqual(validate(self.root / "unpacked/beyondseo")["format_check"], "passed")
+            self.assertEqual(validate(self.root / "unpacked/seoforge")["format_check"], "passed")
             self.assertTrue(archive.with_suffix(".zip.sha256").is_file())
             with self.assertRaisesRegex(ValueError, "already exists"):
                 build(ROOT, archive)
@@ -343,7 +343,7 @@ class PortabilityTests(unittest.TestCase):
             self.assertTrue(zipfile.is_zipfile(archive))
 
     def test_launcher_works_from_unrelated_working_directory(self):
-        from beyondseo import __version__
+        from seoforge import __version__
 
         result = subprocess.run(
             [sys.executable, str(ROOT / "scripts/run.py"), "--version"],
@@ -352,7 +352,7 @@ class PortabilityTests(unittest.TestCase):
             text=True,
         )
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertEqual(result.stdout.strip(), "BeyondSEO " + __version__)
+        self.assertEqual(result.stdout.strip(), "SeoForge " + __version__)
 
     @unittest.skipUnless(os.name == "nt", "PowerShell command acceptance runs on Windows")
     def test_powershell_follow_up_command_preserves_literal_arguments(self):

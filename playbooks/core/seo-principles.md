@@ -1,6 +1,6 @@
 # SEO Principles
 
-Core principles BeyondSEO must follow in every task.
+Core principles SeoForge must follow in every task.
 
 ---
 

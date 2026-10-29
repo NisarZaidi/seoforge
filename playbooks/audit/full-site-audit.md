@@ -2,7 +2,7 @@
 
 Start with `playbooks/core/seo-house-workflow.md` for the complete cross-discipline coverage and deliverable contract. This file supplies the detailed audit checks. The backlink/authority stage must consult the saved source catalog and produce relevant named URLs, not only prospect categories. Entity, authority and REO/reputation need explicit findings and actions alongside SEO/AEO/GEO.
 
-This file defines the complete BeyondSEO audit process for full website audits, SEO + AEO/GEO reviews, client reports, proposal reports, and 30/60/90-day growth plans.
+This file defines the complete SeoForge audit process for full website audits, SEO + AEO/GEO reviews, client reports, proposal reports, and 30/60/90-day growth plans.
 
 A full-site audit is not a checklist dump. It is a decision system that identifies what is blocking ranking, visibility, authority, conversion, and AI-search readiness.
 
@@ -28,7 +28,7 @@ Competitor-based SEO plan
 
 ## 2. Core Questions
 
-A BeyondSEO audit must answer:
+A SeoForge audit must answer:
 
 ```text
 What is stopping this website from ranking?
@@ -98,7 +98,7 @@ Website URL
 Sitemap XML
 Robots.txt
 Page crawl
-BeyondSEO local crawl output
+SeoForge local crawl output
 Native scraping
 SERP data
 GSC export
@@ -458,7 +458,7 @@ GBP performance not verified. This is a major missing data source for local lead
 Check if available:
 
 ```text
-BeyondSEO Reputation Score, range and sample coverage
+SeoForge Reputation Score, range and sample coverage
 Referring domains
 Backlinks
 Dofollow/nofollow

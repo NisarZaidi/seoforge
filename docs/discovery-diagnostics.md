@@ -3,9 +3,9 @@
 A skill can be installed while its Python executable, browser or network access is unavailable. A target site can be reachable while a search provider is unavailable. Keep these observations separate.
 
 ```sh
-beyondseo doctor
+seoforge doctor
 # Optional bounded network probes; use a fresh output directory:
-beyondseo doctor --target https://example.com --query 'Example company' --out runs/doctor
+seoforge doctor --target https://example.com --query 'Example company' --out runs/doctor
 ```
 
 The report separates skill registration (unknown to Python; confirm in the host), native engine, browser runtime, target response, search availability and source-verification runtime. Default `doctor` makes no website requests. Optional probes preserve exact access errors and provider attempts. A successful probe does not promise access to other sites. If the shell itself cannot execute Python, the host must report that denied command: Python cannot diagnose an invocation it never received.
@@ -36,7 +36,7 @@ Official references: [tools](https://code.claude.com/docs/en/tools-reference), [
 
 ## Codex
 
-Confirm the skill appears in the host's skill list. Run `doctor` in the actual task environment. Search-tool availability, shell network permissions and browser execution are separate. Use the current surface's permission control (CLI: `/permissions`) to allow the specific necessary action, within managed policy. A local desktop result does not establish cloud access. No universal Full access setting is required by BeyondSEO.
+Confirm the skill appears in the host's skill list. Run `doctor` in the actual task environment. Search-tool availability, shell network permissions and browser execution are separate. Use the current surface's permission control (CLI: `/permissions`) to allow the specific necessary action, within managed policy. A local desktop result does not establish cloud access. No universal Full access setting is required by SeoForge.
 
 Official references: [skills](https://learn.chatgpt.com/docs/build-skills), [sandbox and permissions](https://learn.chatgpt.com/docs/sandboxing).
 

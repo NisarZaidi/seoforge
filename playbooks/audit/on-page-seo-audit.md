@@ -1,6 +1,6 @@
 # On-Page SEO Audit
 
-This file defines BeyondSEO's on-page SEO audit process.
+This file defines SeoForge's on-page SEO audit process.
 
 On-page SEO is not keyword stuffing. It is the alignment of page topic, search intent, structure, trust, internal links, and conversion.
 
@@ -97,7 +97,7 @@ Strong:
 
 ```text
 Dental Implants in Arlington Heights, IL | Dr. M. Shoaib Khan
-AI Automation Course in Pakistan | BeyondTahir Academy
+AI Automation Course in Pakistan | Acme Learning Academy
 Emergency Dentist in Arlington Heights | Same-Day Dental Care
 ```
 
@@ -143,7 +143,7 @@ H1 is not repeated across many pages
 H1 is not used for multiple CTA/design blocks
 ```
 
-A page can technically have multiple H1s in modern HTML, but for SEO clarity and client implementation, BeyondSEO should recommend one clear main H1 per page unless the template has a justified structure.
+A page can technically have multiple H1s in modern HTML, but for SEO clarity and client implementation, SeoForge should recommend one clear main H1 per page unless the template has a justified structure.
 
 ---
 

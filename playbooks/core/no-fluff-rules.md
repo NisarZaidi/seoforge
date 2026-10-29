@@ -1,6 +1,6 @@
 # No-Fluff Rules
 
-Rules that stop BeyondSEO from producing generic agency filler.
+Rules that stop SeoForge from producing generic agency filler.
 
 ---
 

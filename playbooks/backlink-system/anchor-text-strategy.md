@@ -1,15 +1,15 @@
 # Anchor Text Strategy
 
-This file defines safe anchor text planning for BeyondSEO backlink campaigns.
+This file defines safe anchor text planning for SeoForge backlink campaigns.
 
 ---
 
 ## 1. Anchor Types
 
 ```text
-Brand anchor: BeyondTahir Academy
-Naked URL: https://academy.beyondtahir.com
-Partial-match: AI automation course by BeyondTahir
+Brand anchor: Acme Learning Academy
+Naked URL: https://academy.example.com
+Partial-match: AI automation course by Acme
 Topical: learn AI automation
 Generic/contextual: this guide, here, full breakdown
 Exact-match: AI automation course Pakistan

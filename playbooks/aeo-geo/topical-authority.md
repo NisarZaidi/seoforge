@@ -2,7 +2,7 @@
 
 Topical authority is the website’s demonstrated depth around a topic, service, product, course, or niche.
 
-BeyondSEO uses topical authority to decide what clusters are needed and how money pages should be supported.
+SeoForge uses topical authority to decide what clusters are needed and how money pages should be supported.
 
 ## Purpose
 
@@ -75,7 +75,7 @@ Anchor text is natural
 
 ## Optional topical coverage review
 
-This is a separate reviewer rubric for one topic cluster, not the native BeyondSEO Reputation Score. Explain each assessed component and mark missing evidence unknown; do not give a total when required components cannot be reviewed.
+This is a separate reviewer rubric for one topic cluster, not the native SeoForge Reputation Score. Explain each assessed component and mark missing evidence unknown; do not give a total when required components cannot be reviewed.
 
 Score 0-10:
 

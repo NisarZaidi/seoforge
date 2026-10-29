@@ -60,7 +60,7 @@ Use tables for findings and short strategy paragraphs for decisions.
 
 ## Client Audit Report Framework
 
-This file defines how BeyondSEO creates client-ready SEO reports.
+This file defines how SeoForge creates client-ready SEO reports.
 
 The report must be clear enough for business owners and strong enough for technical teams.
 
@@ -348,7 +348,7 @@ Then give next action.
 
 ## Proposal-Style SEO Report
 
-This file defines how BeyondSEO turns audit findings into a sales/client proposal.
+This file defines how SeoForge turns audit findings into a sales/client proposal.
 
 A proposal should sell the strategy without exaggerating.
 

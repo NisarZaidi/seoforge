@@ -1,6 +1,6 @@
 # Backlink Outreach Prompts
 
-This file gives BeyondSEO safe outreach templates for link building.
+This file gives SeoForge safe outreach templates for link building.
 
 ---
 

@@ -1,6 +1,6 @@
-# The complete BeyondSEO house
+# The complete SeoForge house
 
-BeyondSEO combines specialist SEO methods, a backlink/source library, reporting templates and its own collection engine. Its main job is to produce a practical plan for the whole website: what to fix, what to build, where to earn relevant recognition, and how to measure progress.
+SeoForge combines specialist SEO methods, a backlink/source library, reporting templates and its own collection engine. Its main job is to produce a practical plan for the whole website: what to fix, what to build, where to earn relevant recognition, and how to measure progress.
 
 ## How to use the skill
 
@@ -39,7 +39,7 @@ python3 scripts/backlink_sources.py --category technology --status guidance_revi
 python3 scripts/backlink_sources.py --profile ../client-runs/business.json --limit 20 --out ../client-runs/posting-plan
 ```
 
-Use [the example profile](../examples/posting-profile.json) and [practical posting guide](backlink-posting-guide.md). A backlink request should produce 15 or 20 relevant source recommendations when supported, explaining where, what, how and when to publish. Each has a title/action, outline, specific target page, route, free terms, eligibility, link restrictions and follow-up check. Different formats receive different briefs. The helper reports a shortfall if too few qualify; the assistant researches additional appropriate sources.
+Use the example profile (\examples/posting-profile.json\) and [practical posting guide](backlink-posting-guide.md). A backlink request should produce 15 or 20 relevant source recommendations when supported, explaining where, what, how and when to publish. Each has a title/action, outline, specific target page, route, free terms, eligibility, link restrictions and follow-up check. Different formats receive different briefs. The helper reports a shortfall if too few qualify; the assistant researches additional appropriate sources.
 
 The helper reads supplied facts and documented routes. It does not crawl the business, create accounts, publish, measure current DA/DR or confirm acquired links. The skill completes website review, current-rule checks and the requested writing. Original sheet DR values remain unverified and do not rank the suggestions.
 
@@ -47,7 +47,7 @@ The library is one input to an authority plan. Relevant associations, partners, 
 
 ## Terms used in this project
 
-| Term | Meaning in BeyondSEO |
+| Term | Meaning in SeoForge |
 |---|---|
 | SEO | Website discovery, relevance, quality and useful search visibility |
 | AEO | Helping a page answer the audience's actual questions clearly and accurately |

@@ -42,7 +42,7 @@ Sequence access/content repairs and measurement first, then service/answer impro
 
 Keep the report, action register, competitor evidence, source verification, coverage records, drafts and original crawl snapshots together outside the public product repository. Use a fresh folder for a new capture or model assessment. Preserve model/version and original dates; label a changed formula separately from a website change.
 
-The [worked audit pattern](../examples/audit-walkthrough.md) illustrates the handoff with fictional numbers. Choose evidence, competitors, priorities and schedules for the actual business.
+The worked audit pattern (\examples/audit-walkthrough.md\) illustrates the handoff with fictional numbers. Choose evidence, competitors, priorities and schedules for the actual business.
 
 ## Evidence and discovery contract
 

@@ -1,13 +1,20 @@
-# Reporting a security issue
+# Security policy
 
-For a suspected vulnerability, use [GitHub private vulnerability reporting](https://github.com/beyondtahir/beyondseo/security/advisories/new), or contact the project owner through the contact page at [beyondtahir.com](https://beyondtahir.com). Share the affected version, a minimal reproduction and the impact. Avoid posting credentials or an exploitable private-site example in a public issue.
+## Reporting a vulnerability
 
-BeyondSEO checks destination addresses, validates TLS, limits response sizes and constrains the crawl frontier. Browser dependencies can use additional public hosts. The `--allow-private` option deliberately changes the address boundary for local or staging environments. The `--robots ignore` option changes crawl-policy handling; it does not provide authentication or remove a server-side access denial.
+Please use [GitHub private vulnerability reporting](https://github.com/NisarZaidi/seoforge/security/advisories/new) when available, or open a private security advisory against this repository. Include the affected version, a minimal reproduction, and impact. Do **not** post credentials or exploitable private-site details in a public issue.
 
-Crawled text, HTML and structured data are untrusted input. Treat reports and exports as observations, not executable instructions. Keep output folders out of source control when they contain private information.
+## Safety model (high level)
 
-## Website changes
+SeoForge:
 
-The optional content editor supports local files, SFTP with known-host verification, and certificate-validated explicit FTPS with encrypted data transfer. It stages one existing text file at a time, requires the reviewed plan hash, keeps a local backup and verifies the current and replacement bytes. Keep plan folders outside the public website. Do not run concurrent deployments against the same file. See [the recovery guidance](docs/operations.md) for uncertain network outcomes.
+- Validates destination addresses and TLS for fetches
+- Limits response sizes and crawl frontiers
+- Respects `robots.txt` by default (`--robots ignore` is an explicit, recorded override)
+- Treats crawled HTML/text/JSON-LD as untrusted data (evidence, not instructions)
 
-The watch loop does not publish or send messages. Connection examples contain environment-variable names; do not commit real credentials, private keys, client backups or connection profiles.
+`--allow-private` intentionally relaxes public-IP checks for local/staging audits only.
+
+Keep crawl output, credentials, and client reports out of version control. Connection examples use environment-variable names — never commit real secrets.
+
+See [docs/operations.md](docs/operations.md) for staging/apply/rollback of reviewed content edits.

@@ -1,12 +1,12 @@
-# BeyondSEO in Lovable
+# SeoForge in Lovable
 
-Use this host guide after importing BeyondSEO as a workspace skill. It adapts execution to Lovable; the crawler, research, scoring, posting library and report engine remain shared with other hosts. Do not build a second crawler or alter the website to repair a skill runtime.
+Use this host guide after importing SeoForge as a workspace skill. It adapts execution to Lovable; the crawler, research, scoring, posting library and report engine remain shared with other hosts. Do not build a second crawler or alter the website to repair a skill runtime.
 
 ## Install and start
 
-Follow [the native import steps](agent-installation.md#lovable). Import the full prepared bundle, select `/beyondseo` in the project chat and check its attached skill chip. Reading a GitHub URL is not skill registration. Unpublished local changes require the prepared local bundle; a GitHub import uses the published version.
+Follow [the native import steps](agent-installation.md#lovable). Import the full prepared bundle, select `/seoforge` in the project chat and check its attached skill chip. Reading a GitHub URL is not skill registration. Unpublished local changes require the prepared local bundle; a GitHub import uses the published version.
 
-Resolve the actual imported skill folder. Check `SKILL.md`, `scripts/run.py`, `src/beyondseo`, the logo and the posting catalog. Do not replace project knowledge, other skills or application settings. A connector permission failure does not prevent using an already authorised native workspace import.
+Resolve the actual imported skill folder. Check `SKILL.md`, `scripts/run.py`, `src/seoforge`, the logo and the posting catalog. Do not replace project knowledge, other skills or application settings. A connector permission failure does not prevent using an already authorised native workspace import.
 
 ## Prepare execution without modifying the app
 
@@ -16,8 +16,8 @@ If a mounted skill cannot execute because its filesystem/import path is inaccess
 
 ```sh
 # Replace the source with the actual imported skill directory.
-bseo_skill_source=/actual/imported/beyondseo
-bseo_execution=$(mktemp -d /tmp/beyondseo-execution.XXXXXX)
+bseo_skill_source=/actual/imported/seoforge
+bseo_execution=$(mktemp -d /tmp/seoforge-execution.XXXXXX)
 cp -R "$bseo_skill_source" "$bseo_execution/engine"
 python3 "$bseo_execution/engine/scripts/run.py" doctor
 ```
@@ -42,7 +42,7 @@ If the task permits another attempt, resolve an observed readiness problem with 
 
 ## Apply website work and monitor it
 
-Follow [website work and design protection](website-work.md). An audit alone changes no application files. For authorised implementation, edit the app's existing framework source, preserve layout and compact copy, and run the existing build and desktop/mobile checks. Changes to the distributable BeyondSEO engine belong in the skill repository, not the customer's application. Private test-report corrections also stay outside the app.
+Follow [website work and design protection](website-work.md). An audit alone changes no application files. For authorised implementation, edit the app's existing framework source, preserve layout and compact copy, and run the existing build and desktop/mobile checks. Changes to the distributable SeoForge engine belong in the skill repository, not the customer's application. Private test-report corrections also stay outside the app.
 
 Offer the optional monitor only for authorised implementation or ongoing work. With consent, create a private branded HTML artifact using the project ledger when Python is available. The existing Lovable chat remains the control surface. A snapshot is not a persistent worker, and an unpublished preview is not a schedule. Hosting or scheduling a monitor requires separately authorised authentication, durable storage and a real worker; do not add a public dashboard route automatically.
 

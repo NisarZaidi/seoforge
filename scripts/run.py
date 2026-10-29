@@ -41,13 +41,13 @@ def main():
             return 2
     if sys.version_info < (3, 10):
         print(
-            "BeyondSEO needs Python 3.10 or newer. Prepare a compatible runtime with setup.py.",
+            "SeoForge needs Python 3.10 or newer. Prepare a compatible runtime with setup.py.",
             file=sys.stderr,
         )
         return 2
     sys.path.insert(0, str(root / "src"))
     try:
-        from beyondseo.cli import main as cli_main
+        from seoforge.cli.main import main as cli_main
     except ModuleNotFoundError as error:
         print(
             f"Missing dependency: {error.name}. Run Python on {root / 'scripts/setup.py'} first.",

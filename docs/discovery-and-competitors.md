@@ -1,8 +1,8 @@
 # Search discovery that keeps its evidence
 
-BeyondSEO can collect public search leads without an SEO subscription. It uses permitted native search responses, recorded host search results, saved result HTML or supplied URLs. Its crawler then checks the actual pages. A search snippet alone never proves a backlink, a company's services, authority or ranking.
+SeoForge can collect public search leads without an SEO subscription. It uses permitted native search responses, recorded host search results, saved result HTML or supplied URLs. Its crawler then checks the actual pages. A search snippet alone never proves a backlink, a company's services, authority or ranking.
 
-The host assistant and native engine are separate. An assistant's search tool can work while shell networking is blocked; the reverse is also possible. Python cannot call a tool merely because the assistant sees it. The assistant executes its available search tools and passes their recorded responses through the shared import contract below. BeyondSEO does not install a search plugin or require a paid API.
+The host assistant and native engine are separate. An assistant's search tool can work while shell networking is blocked; the reverse is also possible. Python cannot call a tool merely because the assistant sees it. The assistant executes its available search tools and passes their recorded responses through the shared import contract below. SeoForge does not install a search plugin or require a paid API.
 
 ## Start with the business
 
@@ -12,11 +12,11 @@ The host assistant and native engine are separate. An assistant's search tool ca
 4. Write natural buyer queries in the profile review: simple category/service phrases first, then useful customer questions. Discover a broader pool, capture candidate pages, and review their profiles using the same matching keys. Reject unrelated business models before selecting competitors.
 
 ```sh
-beyondseo crawl https://example.com --out runs/site --max-pages 25
-beyondseo profile --crawl runs/site --out runs/business
+seoforge crawl https://example.com --out runs/site --max-pages 25
+seoforge profile --crawl runs/site --out runs/business
 # The assistant reads the packet and writes review.json, following the format below.
-beyondseo profile --crawl runs/site --brief brief.json --review review.json --out runs/business-reviewed
-beyondseo discover --queries runs/business-reviewed/queries.json --target https://example.com \
+seoforge profile --crawl runs/site --brief brief.json --review review.json --out runs/business-reviewed
+seoforge discover --queries runs/business-reviewed/queries.json --target https://example.com \
   --cache runs/search-cache --out runs/discovery
 ```
 
@@ -87,7 +87,7 @@ An available host browser can perform ordinary Google navigation and pass its ob
 ## Actual search methods and fallbacks
 
 ```sh
-beyondseo discover --query 'automation agency in Pakistan' \
+seoforge discover --query 'automation agency in Pakistan' \
   --market Pakistan --language English --target https://example.com --out runs/search
 ```
 
@@ -120,7 +120,7 @@ Inspect the host's actual tool inventory and permissions. If an authorized searc
 For failures use `status: "failed"`, `results: []`, exact `evidence`, and `stage: "execution"` only if command execution was actually denied; include `http_status` when observable. Use `empty_results` only when the tool successfully reported no results. Imports are operator-recorded history, not cryptographically authenticated searches. Unknown causes remain unknown.
 
 ```sh
-beyondseo discover --queries runs/business-reviewed/queries.json --host-results host-search.json \
+seoforge discover --queries runs/business-reviewed/queries.json --host-results host-search.json \
   --target https://example.com --out runs/discovery
 ```
 
@@ -130,11 +130,11 @@ Matching host results are consumed first. If they fail or have no relevant URLs,
 
 ```sh
 # Supplied candidates or an existing source CSV:
-beyondseo discover --offline --candidate https://candidate.example/services \
+seoforge discover --offline --candidate https://candidate.example/services \
   --sources-csv sources.csv --out runs/supplied
 
 # Saved Google, Bing HTML, DuckDuckGo HTML or Bing RSS responses:
-beyondseo search-import --html saved.html --engine DuckDuckGo --target https://example.com \
+seoforge search-import --html saved.html --engine DuckDuckGo --target https://example.com \
   --query 'automation agency in Pakistan' --captured-at 2026-09-16T09:00:00Z --out runs/import
 ```
 
@@ -147,14 +147,14 @@ For multiple providers/dates, pass `--saved-search snapshots.json` to `discover`
 For backlinks, run the existing source checker; only captured links count:
 
 ```sh
-beyondseo backlinks --sources runs/discovery/sources.csv --target https://example.com \
+seoforge backlinks --sources runs/discovery/sources.csv --target https://example.com \
   --brand Example --max-sources 20 --out runs/links
 ```
 
 For competitors, crawl the exact candidate and relevant service/about/contact pages, prepare and review its profile, then:
 
 ```sh
-beyondseo competitors --profile runs/business-reviewed/profile.json \
+seoforge competitors --profile runs/business-reviewed/profile.json \
   --candidate-profile runs/candidate-a/profile.json \
   --candidate-profile runs/candidate-b/profile.json \
   --discovery runs/discovery/discovery.json --out runs/comparison
@@ -173,7 +173,7 @@ Weights: service overlap 40, customer overlap 25, market overlap 15, business mo
 Every crawl now writes `findings.json`, alongside existing `issues.json`. Enrich those observations with the reviewed business context:
 
 ```sh
-beyondseo audit --crawl runs/site --profile runs/business-reviewed/profile.json \
+seoforge audit --crawl runs/site --profile runs/business-reviewed/profile.json \
   --discovery runs/discovery/discovery.json --out runs/audit
 ```
 

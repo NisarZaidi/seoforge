@@ -1,4 +1,4 @@
-# Set up BeyondSEO
+# Set up SeoForge
 
 This guide takes you from a source checkout to your first saved crawl. You need Python 3.10 or newer and an internet connection for installation. Python 3.12 is the recommended starting point. Browser mode downloads a local copy of Chromium; no account is needed.
 
@@ -9,8 +9,8 @@ For installation in Claude, Cowork, Claude Code, Codex, ChatGPT Work, Hermes or 
 Get the source, then open a terminal in the folder containing `pyproject.toml`, `README.md` and `scripts/`:
 
 ```sh
-git clone https://github.com/beyondtahir/beyondseo.git
-cd beyondseo
+git clone https://github.com/NisarZaidi/seoforge.git
+cd seoforge
 ```
 
 Confirm your Python version:
@@ -52,7 +52,7 @@ On Linux, a minimal installation may also need Chromium's system libraries. Run 
 .venv/bin/python -m playwright install-deps chromium
 ```
 
-That command may request administrator access for system packages. The main BeyondSEO setup script does not install operating-system packages silently.
+That command may request administrator access for system packages. The main SeoForge setup script does not install operating-system packages silently.
 
 ## 3. Check the installation
 
@@ -76,7 +76,7 @@ Open `../client-runs/example/report.md` for the crawl report, `documents.jsonl` 
 If your site redirects between the bare domain and `www`, include the other host:
 
 ```sh
-beyondseo crawl https://example.com --allow-host www.example.com \
+seoforge crawl https://example.com --allow-host www.example.com \
   --out runs/example-www --max-pages 25
 ```
 
@@ -87,8 +87,8 @@ An additional website host is not automatically inferred. Public browser asset/A
 Keep the uploaded skill where the host manages it. Prepare the crawler in a separate folder that the host permits for execution:
 
 ```sh
-python3 /path/to/beyondseo/scripts/setup.py --venv /approved/runtime/beyondseo
-python3 /path/to/beyondseo/scripts/run.py --runtime /approved/runtime/beyondseo doctor
+python3 /path/to/seoforge/scripts/setup.py --venv /approved/runtime/seoforge
+python3 /path/to/seoforge/scripts/run.py --runtime /approved/runtime/seoforge doctor
 ```
 
 Replace both paths with real paths in that execution environment. Setup uses a temporary source copy when building the package, so it does not write build files into the mounted skill. A denied path still needs a host-supported location; the option does not change permissions. Use the same `--runtime` for every crawler command. See [Work save and execution errors](agent-installation.md#when-work-cannot-save-or-run-it).
@@ -102,7 +102,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -e ".[browser,reports]"
 python -m playwright install chromium
-beyondseo doctor
+seoforge doctor
 ```
 
 On Windows replace the first command with `py -3 -m venv .venv` and activate with `.venv\Scripts\Activate.ps1`.
@@ -114,7 +114,7 @@ For websites whose content arrives in the initial response:
 ```sh
 python3 scripts/setup.py --http-only
 source .venv/bin/activate
-beyondseo crawl https://example.com --out runs/http --mode http
+seoforge crawl https://example.com --out runs/http --mode http
 ```
 
 Add browser support later from the repository root:
@@ -139,14 +139,14 @@ Version 2.1 adds crawl settings and output fields. Start a fresh output folder f
 
 | Message or symptom | What to do |
 |---|---|
-| `beyondseo: command not found` | Activate `.venv`, or use `.venv/bin/beyondseo` / `.venv\Scripts\beyondseo.exe` directly |
+| `seoforge: command not found` | Activate `.venv`, or use `.venv/bin/seoforge` / `.venv\Scripts\seoforge.exe` directly |
 | Optional rendering dependency missing | Install `.[browser,reports]` inside the active environment |
 | Chromium executable missing | Run `python -m playwright install chromium` with that environment's Python |
 | Chromium download times out or returns a gateway error | Keep the download error separate from skill registration. Check the host's permitted network access to the browser download URL; do not repeat downloads indefinitely. Use `--http-only` setup and `--mode http` for reachable pages while browser setup is unavailable. This does not verify JavaScript content. |
 | Browser launch fails on Linux | Install Chromium system libraries using the command above |
 | Target DNS lookup fails | Record the failed hostname and error; check the hostname and the execution environment's DNS/network access. If `robots.txt` cannot be fetched, do not bypass the robots check or describe the page's content as inspected. |
 | Proxy returns HTTP 407 | Check proxy credentials and access with the workspace administrator. Do not paste credentials into chat, reports or command history. |
-| Proxy tunnel denied or unsupported proxy | BeyondSEO supports HTTP proxy CONNECT to a locally resolved, verified destination IP. Confirm the proxy permits CONNECT to that IP and port; HTTPS-to-proxy and SOCKS are not supported. No direct fallback is attempted when a configured proxy fails. |
+| Proxy tunnel denied or unsupported proxy | SeoForge supports HTTP proxy CONNECT to a locally resolved, verified destination IP. Confirm the proxy permits CONNECT to that IP and port; HTTPS-to-proxy and SOCKS are not supported. No direct fallback is attempted when a configured proxy fails. |
 | TLS certificate error | Check the system certificate store and network configuration; certificate verification stays enabled |
 | Output already contains a crawl | Use `--resume` with matching settings, or choose a fresh output folder |
 | `crawl.lock exists` | Check its recorded process ID; stop an active crawl before removing a stale lock |
@@ -161,7 +161,7 @@ Close processes using the environment, deactivate it and delete the project's `.
 
 For a designed client deliverable, follow [branded reports](branded-reports.md). `present` exports PDF and HTML locally; it needs no browser or online account. Both normal and HTTP-only setup include the free PDF renderer.
 
-Next: [browser options](browser.md), [command reference](../references/crawler.md), or [local examples](../examples/README.md).
+Next: [browser options](browser.md), [command reference](../references/crawler.md), or local examples (\examples/README.md\).
 
 ## Ongoing reviews and hosting access
 
@@ -169,6 +169,6 @@ After the first crawl, read `readiness.md` for plain-language next steps. The [o
 
 ### Proxy-enabled environments
 
-BeyondSEO's native HTTP transport reads the `http_proxy`, `https_proxy` and `no_proxy` environment settings (including their standard uppercase variants). For a configured HTTP proxy it sends a CONNECT request to a locally resolved and validated target IP, then retains the original hostname for HTTPS certificate verification. Requests still follow scope, robots and redirect checks. Proxy basic authentication is passed to the proxy only; do not include proxy URLs or credentials in reports.
+SeoForge's native HTTP transport reads the `http_proxy`, `https_proxy` and `no_proxy` environment settings (including their standard uppercase variants). For a configured HTTP proxy it sends a CONNECT request to a locally resolved and validated target IP, then retains the original hostname for HTTPS certificate verification. Requests still follow scope, robots and redirect checks. Proxy basic authentication is passed to the proxy only; do not include proxy URLs or credentials in reports.
 
-Local target DNS must work: proxy-side hostname resolution alone is not supported because BeyondSEO cannot independently verify which address the proxy will reach. Some proxies do not permit IP-based CONNECT or tunnels to HTTP ports. A successful proxy request in another tool does not by itself establish that BeyondSEO can use that proxy. Those cases remain blocked; use the host's permitted browser or supplied evidence, or ask the workspace administrator about approved DNS and proxy policy. HTTP proxies expose CONNECT metadata and any proxy credentials to the proxy connection; use a trusted network. Browser availability, installation downloads and host permissions are separate checks.
+Local target DNS must work: proxy-side hostname resolution alone is not supported because SeoForge cannot independently verify which address the proxy will reach. Some proxies do not permit IP-based CONNECT or tunnels to HTTP ports. A successful proxy request in another tool does not by itself establish that SeoForge can use that proxy. Those cases remain blocked; use the host's permitted browser or supplied evidence, or ask the workspace administrator about approved DNS and proxy policy. HTTP proxies expose CONNECT metadata and any proxy credentials to the proxy connection; use a trusted network. Browser availability, installation downloads and host permissions are separate checks.

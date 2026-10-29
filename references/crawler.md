@@ -1,6 +1,6 @@
 # Command reference
 
-Run `beyondseo --help` or `beyondseo crawl --help` for the installed command. From a source checkout with dependencies installed, `python scripts/crawl.py` is also available. Setup is documented in [docs/setup.md](../docs/setup.md).
+Run `seoforge --help` or `seoforge crawl --help` for the installed command. From a source checkout with dependencies installed, `python scripts/crawl.py` is also available. Setup is documented in [docs/setup.md](../docs/setup.md).
 
 ## Commands
 
@@ -43,7 +43,7 @@ Crawl/scrape/report exit codes: 0 means at least one unique HTML document was ex
 | `--keep-tracking` | false | Keep common tracking parameters in frontier identities |
 | `--resume` | false | Continue the same snapshot |
 
-The URL budget is not an HTTP request budget. Robots files, sitemaps, redirects, retries and browser resources make additional requests. Redirect chains are bounded. The transport identifies itself as BeyondSEO, validates TLS, ignores environment proxies and connects to a checked resolved address. Embedded credentials and non-HTTP schemes are rejected. OS-managed DNS resolution can take longer than an application timeout.
+The URL budget is not an HTTP request budget. Robots files, sitemaps, redirects, retries and browser resources make additional requests. Redirect chains are bounded. The transport identifies itself as SeoForge, validates TLS, ignores environment proxies and connects to a checked resolved address. Embedded credentials and non-HTTP schemes are rejected. OS-managed DNS resolution can take longer than an application timeout.
 
 Hosts are exact; subdomains do not join the page queue automatically. Use `--include-www` for a normal public-site audit that includes the ordinary www/non-www pair, or omit it for an explicitly exact-host brief. This lets a robots/canonical redirect resolve within that pair without overriding a disallow rule. Use a fresh output directory when changing scope. Configured hosts use the seed port or standard HTTP/HTTPS ports. External links are recorded without being crawled. Known asset extensions are excluded from page discovery; extensionless non-HTML resources may consume a URL slot. Images and fonts are fetched only for screenshot rendering and are not analyzed as media files.
 
@@ -76,11 +76,11 @@ Frontier normalization removes fragments and common tracking parameters. Query o
 | `--quiet` | false | Hide progress; summary JSON still goes to stdout |
 | `--no-color` | false | Disable terminal colors; `NO_COLOR` is also honored |
 
-A selector file maps names to CSS strings or objects with `selector`, optional `attribute`, and `all` (default true). `all: false` returns the first result or null. Text is whitespace-normalized; attributes remain as found. Invalid CSS fails before a crawl starts. See [examples/selectors.json](../examples/selectors.json).
+A selector file maps names to CSS strings or objects with `selector`, optional `attribute`, and `all` (default true). `all: false` returns the first result or null. Text is whitespace-normalized; attributes remain as found. Invalid CSS fails before a crawl starts. See examples/selectors.json (\examples/selectors.json\).
 
 ## Robots and sitemaps
 
-Matching uses the BeyondSEO robots group, otherwise wildcard groups. Repeated matching groups merge; the longest matching rule wins and allow wins a tie. Wildcards and terminal `$` are supported. Robots evidence is loaded per origin. Unavailable robots responses are distinguished from unreachable policies as described in [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html#section-2.3.1.3). Network/server failures, challenges and 429 defer requests in respect mode. Other 4xx robots responses permit attempts to public resources. The override is logged; actual resource responses are still checked.
+Matching uses the SeoForge robots group, otherwise wildcard groups. Repeated matching groups merge; the longest matching rule wins and allow wins a tie. Wildcards and terminal `$` are supported. Robots evidence is loaded per origin. Unavailable robots responses are distinguished from unreachable policies as described in [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html#section-2.3.1.3). Network/server failures, challenges and 429 defer requests in respect mode. Other 4xx robots responses permit attempts to public resources. The override is logged; actual resource responses are still checked.
 
 Crawl-delay is honored as an extension. Required waits over 30 seconds defer work rather than shortening the delay. Retry-After is honored for transient failures; values over 30 seconds leave a failure for a later run instead of retrying early.
 
@@ -123,7 +123,7 @@ An exhausted frontier means the discovered, scoped queue has finished. It does n
 
 Resume permits changing page budget, HTTP worker count, delay, timeout and retries. Scope, normalization, extraction and browser settings must match. Completed pages, including errors, are not refreshed. Interrupted in-flight queue items become pending. Older schema/configuration snapshots may require their original version; a fresh folder is the supported upgrade path.
 
-Reports load records into memory. BeyondSEO is designed for bounded local website audits, not a distributed crawling service. Scheduling, incremental change detection, authenticated sessions and web-wide search/backlink indexes are separate work.
+Reports load records into memory. SeoForge is designed for bounded local website audits, not a distributed crawling service. Scheduling, incremental change detection, authenticated sessions and web-wide search/backlink indexes are separate work.
 
 ## Review and implementation commands
 
@@ -131,16 +131,16 @@ Reports load records into memory. BeyondSEO is designed for bounded local websit
 
 ## Branded client deliverables
 
-Use `present --audit /path/to/audit.json --out /path/to/deliverable` for saved findings, or `present --input /path/to/report-content.json --out /path/to/deliverable` for a complete reviewed strategy. The default writes local PDF and self-contained HTML with the BeyondSEO logo. See [report design and content format](../docs/branded-reports.md). This presentation step preserves evidence and uncertainty; the existing `report` command still regenerates crawl exports.
+Use `present --audit /path/to/audit.json --out /path/to/deliverable` for saved findings, or `present --input /path/to/report-content.json --out /path/to/deliverable` for a complete reviewed strategy. The default writes local PDF and self-contained HTML with the SeoForge logo. See [report design and content format](../docs/branded-reports.md). This presentation step preserves evidence and uncertainty; the existing `report` command still regenerates crawl exports.
 
 ## Choose the audit depth
 
 ```sh
-beyondseo crawl https://example.com --include-www --audit-depth quick --out ../runs/home
-beyondseo crawl https://example.com --include-www --out ../runs/standard
-beyondseo crawl https://example.com --include-www --audit-depth deep --max-pages 30 --out ../runs/deep
-beyondseo crawl https://example.com --only-url /services --only-url /contact --out ../runs/selected
-beyondseo crawl https://example.com --include-www --resume --next-pages 15 --out ../runs/standard
+seoforge crawl https://example.com --include-www --audit-depth quick --out ../runs/home
+seoforge crawl https://example.com --include-www --out ../runs/standard
+seoforge crawl https://example.com --include-www --audit-depth deep --max-pages 30 --out ../runs/deep
+seoforge crawl https://example.com --only-url /services --only-url /contact --out ../runs/selected
+seoforge crawl https://example.com --include-www --resume --next-pages 15 --out ../runs/standard
 ```
 
 Quick mode still discovers robots/sitemap evidence, but inspects one content URL. `scrape` remains the minimal one-page command without sitemap discovery. Standard selection favours the seed, About/Contact, offers and cases before archives using URL-role heuristics and role diversity. The agent should review business relevance or supply exact URLs; no traffic or search volume is inferred. Non-English/opaque route names may require supplied priorities. Python `Config` retains its legacy 100-page/breadth defaults for existing integrations; the user-facing CLI defaults to standard priority mode.

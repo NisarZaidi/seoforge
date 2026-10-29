@@ -1,34 +1,41 @@
+# Python
 .venv/
 venv/
 __pycache__/
 *.py[cod]
+*$py.class
 *.egg-info/
+.eggs/
 .ruff_cache/
 .pytest_cache/
+.mypy_cache/
 .coverage
+.coverage.*
 htmlcov/
 build/
 dist/
+*.egg
+
+# Environment & secrets
 .env
 .env.*
 !.env.example
+*.pem
+*.key
+*connection.private.json
+
+# Local SeoForge config (keep the example tracked)
+seoforge.toml
+.seoforge.toml
+
+# Crawl / audit outputs
 runs/
+seoforge-runs/
 output/
 storage/
 *.sqlite3
 *.sqlite3-*
 crawl.lock
-.DS_Store
-Thumbs.db
-.idea/
-.vscode/
-
-changes/
-private/
-*connection.private.json
-*.pem
-*.key
-
 /client-runs/
 /reports/
 /trial-runs/
@@ -38,5 +45,15 @@ private/
 /acceptance-runs/
 /captures/
 /transcripts/
+changes/
+private/
 *.har
 *.trace.zip
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~

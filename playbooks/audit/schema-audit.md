@@ -1,6 +1,6 @@
 # Schema and Structured Data Audit
 
-This file defines BeyondSEO's schema audit process.
+This file defines SeoForge's schema audit process.
 
 Schema is not magic ranking dust. It helps search engines and answer engines understand entities, page types, relationships, products, courses, services, local businesses, breadcrumbs, FAQs, and trust signals.
 
@@ -51,7 +51,7 @@ Page HTML/source
 Crawl output
 Schema validator output
 Rich Results Test output
-BeyondSEO local crawl output
+SeoForge local crawl output
 CMS templates
 Existing JSON-LD
 Visible page content

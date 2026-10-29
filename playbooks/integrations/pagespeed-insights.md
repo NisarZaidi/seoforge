@@ -1,6 +1,6 @@
 # PageSpeed Insights Workflow
 
-How BeyondSEO should use PageSpeed and Core Web Vitals data.
+How SeoForge should use PageSpeed and Core Web Vitals data.
 
 ---
 

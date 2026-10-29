@@ -1,12 +1,12 @@
-# Reports that look like BeyondSEO
+# Reports that look like SeoForge
 
 Use the built-in editorial layout for PDFs, downloadable audits, proposals, strategy reports and recurring reviews. Lead with a clear cover, a short reading guide, useful conclusions, comparable evidence and actions the reader can verify.
 
-The existing BeyondSEO logo is included unchanged. Reports use white, near-black and dark red, generous margins, numbered sections, neutral comparison tables, source notes and page numbers. PDF contents link to the actual section pages. Charts are vector graphics; the logo and fonts are embedded. PDF export requires no paid API, browser session, remote fonts or online template account.
+The existing SeoForge logo is included unchanged. Reports use white, near-black and dark red, generous margins, numbered sections, neutral comparison tables, source notes and page numbers. PDF contents link to the actual section pages. Charts are vector graphics; the logo and fonts are embedded. PDF export requires no paid API, browser session, remote fonts or online template account.
 
 ## Generate a report
 
-The normal installer includes the free PDF renderer. Copy the [fictional content example](../examples/report-content.json) outside the repository and replace it with reviewed client evidence:
+The normal installer includes the free PDF renderer. Copy the fictional content example (\examples/report-content.json\) outside the repository and replace it with reviewed client evidence:
 
 ```sh
 python3 scripts/run.py present --input /path/to/client/report-content.json \

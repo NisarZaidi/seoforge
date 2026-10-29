@@ -1,6 +1,6 @@
 # Third-Party Authority Article System
 
-This module teaches BeyondSEO how to create third-party articles that build authority without looking like propaganda.
+This module teaches SeoForge how to create third-party articles that build authority without looking like propaganda.
 
 ---
 
@@ -73,7 +73,7 @@ Avoid exact-match anchor spam.
 Bad:
 
 ```text
-BeyondTahir Academy is the best AI academy in Pakistan.
+Acme Learning Academy is the best AI academy in Pakistan.
 ```
 
 Better:
@@ -82,7 +82,7 @@ Better:
 Why Practical AI Education Is Becoming More Important Than Tool Tutorials in Pakistan
 ```
 
-Then discuss universities, YouTube learning, international courses, local bootcamps, and mention BeyondTahir Academy as one implementation-focused example with student proof.
+Then discuss universities, YouTube learning, international courses, local bootcamps, and mention Acme Learning Academy as one implementation-focused example with student proof.
 
 ---
 

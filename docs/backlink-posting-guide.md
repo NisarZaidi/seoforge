@@ -1,6 +1,6 @@
 # Find the right places to publish
 
-BeyondSEO uses your website and the supplied posting library to answer: **where should I publish, what should I write, how do I post it, and when should I do it?**
+SeoForge uses your website and the supplied posting library to answer: **where should I publish, what should I write, how do I post it, and when should I do it?**
 
 The catalog source is **Free article website.pdf**: 241 rows, 237 distinct URL strings and 206 website/community entries after grouping duplicate routes. Full articles, community posts, answers, profiles and resource sites are different opportunities. [Browse the catalog](backlink-source-catalog.md).
 
@@ -8,7 +8,7 @@ The catalog source is **Free article website.pdf**: 241 rows, 237 distinct URL s
 
 > Review my website and recommend 15 suitable free posting sources. For each, give me a direct route, explain why it fits, suggest a specific article or post, identify the page to link, explain the posting steps and schedule it around two pieces per week. Show any unconfirmed free terms, authority claims or eligibility. Draft the first two articles.
 
-Ask for 20 if your scope needs it. A focused niche may have fewer qualifying sites in the current reviewed subset. BeyondSEO should research the missing relevant opportunities or explain the shortfall; it should not add unrelated sites to satisfy a number.
+Ask for 20 if your scope needs it. A focused niche may have fewer qualifying sites in the current reviewed subset. SeoForge should research the missing relevant opportunities or explain the shortfall; it should not add unrelated sites to satisfy a number.
 
 ## How the library works
 
@@ -33,7 +33,7 @@ Use `py -3` instead of `python3` on Windows. Browsing and planning use Python's 
 
 ## Draft a plan from website facts
 
-Save a copy of [the example profile](../examples/posting-profile.json) as `../client-runs/business.json`, outside the skill folder. Replace its example business, target URLs, audience and topics with facts observed on the user's actual website. Record the crawl/source date in `evidence_basis`. Do not invent a service URL or mark a planned resource as already live.
+Save a copy of the example profile (\examples/posting-profile.json\) as `../client-runs/business.json`, outside the skill folder. Replace its example business, target URLs, audience and topics with facts observed on the user's actual website. Record the crawl/source date in `evidence_basis`. Do not invent a service URL or mark a planned resource as already live.
 
 ```sh
 python3 scripts/backlink_sources.py --profile ../client-runs/business.json --limit 15 --out ../client-runs/posting-plan
@@ -66,9 +66,9 @@ Some concrete differences:
 
 ## Authority, DA, DR and “dofollow”
 
-The sheet labels its numbers **DR**, not DA. It supplies no measurement provider/date and has conflicts for 28 site entries. BeyondSEO displays these as **unverified sheet values**, never as a current authority rating or ranking input. Current DA/DR remain unavailable without a dated verified measurement. Zero in the sheet is not proof that the website has no authority.
+The sheet labels its numbers **DR**, not DA. It supplies no measurement provider/date and has conflicts for 28 site entries. SeoForge displays these as **unverified sheet values**, never as a current authority rating or ranking input. Current DA/DR remain unavailable without a dated verified measurement. Zero in the sheet is not proof that the website has no authority.
 
-Explain a destination's relevance, moderation/editorial role, audience and credibility evidence. A famous platform does not guarantee value for a new page, and an owned article is not independent endorsement. The [BeyondSEO Reputation Score](scoring-explained.md) measures observed evidence about the client, not promised future placements.
+Explain a destination's relevance, moderation/editorial role, audience and credibility evidence. A famous platform does not guarantee value for a new page, and an owned article is not independent endorsement. The [SeoForge Reputation Score](scoring-explained.md) measures observed evidence about the client, not promised future placements.
 
 A 200 response is only an access observation. The sheet's `index` label does not establish search indexing or link attributes. After a real post exists, verify its actual source/target URLs and `rel` attributes with the native backlink checker; check robots, noindex and canonical separately. [Verification commands](operations.md).
 

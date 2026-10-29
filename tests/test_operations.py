@@ -8,13 +8,13 @@ from unittest.mock import Mock, patch
 
 from test_crawler import CrawlerTests
 
-from beyondseo.backlinks import check_sources
-from beyondseo.engine import write_json
-from beyondseo.extract import extract
-from beyondseo.monitor import watch
-from beyondseo.network import RobotsRules
-from beyondseo.publishing import LocalStore, RemoteStore, apply_change, digest, stage
-from beyondseo.review import compare, readiness
+from seoforge.reputation.backlinks import check_sources
+from seoforge.crawl.engine import write_json
+from seoforge.extract.html import extract
+from seoforge.crawl.monitor import watch
+from seoforge.crawl.network import RobotsRules
+from seoforge.cli.publishing import LocalStore, RemoteStore, apply_change, digest, stage
+from seoforge.analyze.review import compare, readiness
 
 
 class ReviewTests(unittest.TestCase):
@@ -181,14 +181,14 @@ class PublishingTests(unittest.TestCase):
                 raise OSError("write failure")
             return original_replace(source, target)
 
-        with patch("beyondseo.publishing.os.replace", side_effect=fail_target):
+        with patch("seoforge.cli.publishing.os.replace", side_effect=fail_target):
             with self.assertRaises(ValueError):
                 apply_change(self.store, self.plan, checksum)
         self.assertEqual(self.file.read_bytes(), before)
         self.assertEqual(
             json.loads((self.plan / "receipt.json").read_text())["status"], "needs_inspection"
         )
-        self.assertFalse(list(self.site.glob(".beyondseo-*")))
+        self.assertFalse(list(self.site.glob(".seoforge-*")))
 
     def test_connection_profile_refuses_plaintext_secrets(self):
         with self.assertRaises(ValueError):

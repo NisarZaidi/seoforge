@@ -1,6 +1,6 @@
 # Read pages that use JavaScript
 
-BeyondSEO uses a local Chromium browser to execute page scripts, load public dependencies, wait for content and scroll through a bounded part of the page. The raw HTTP response is always retained as a separate representation.
+SeoForge uses a local Chromium browser to execute page scripts, load public dependencies, wait for content and scroll through a bounded part of the page. The raw HTTP response is always retained as a separate representation.
 
 ## Three modes
 
@@ -15,7 +15,7 @@ The command line defaults to `auto`; the Python `Config` defaults to `http` so a
 ## Wait for something meaningful
 
 ```sh
-beyondseo scrape https://example.com/articles --out runs/articles \
+seoforge scrape https://example.com/articles --out runs/articles \
   --mode browser --wait-for-selector "article h2" \
   --render-wait-ms 2000 --render-settle-ms 3000 --timeout 60
 ```
@@ -27,7 +27,7 @@ A stability observation is a signal, not proof that all asynchronous work is com
 ## Scroll and capture
 
 ```sh
-beyondseo scrape https://example.com --out runs/visual \
+seoforge scrape https://example.com --out runs/visual \
   --mode browser --scroll-steps 5 --screenshot --timeout 60
 ```
 
@@ -37,12 +37,12 @@ Screenshots capture a 1440 × 1000 viewport after returning to the top. Images a
 
 ## Website dependencies
 
-The default `--browser-assets public` permits public HTTP(S) asset/API hosts observed in page requests. Each request still passes through BeyondSEO's transport, address checks, pacing, robots policy and body-size limit. These dependencies do not become crawl-page targets. Cross-site frames are not loaded as page documents.
+The default `--browser-assets public` permits public HTTP(S) asset/API hosts observed in page requests. Each request still passes through SeoForge's transport, address checks, pacing, robots policy and body-size limit. These dependencies do not become crawl-page targets. Cross-site frames are not loaded as page documents.
 
 For a tighter run:
 
 ```sh
-beyondseo scrape https://example.com --out runs/restricted \
+seoforge scrape https://example.com --out runs/restricted \
   --mode browser --browser-assets allowlist \
   --render-allow-host cdn.example.com --render-allow-host api.example.com
 ```
@@ -67,4 +67,4 @@ Read the page's `rendered` object in `pages.jsonl`:
 - `content_warning`: empty main-text extraction.
 - `scroll_steps_completed`: actual scroll steps performed.
 
-A 403, 429 or recognized challenge is recorded separately from local restrictions. A successful HTTP response with an empty DOM may be an application failure. BeyondSEO does not solve CAPTCHAs, rotate identities or claim universal access. The aim is inspectable content and a clear account of what was actually read.
+A 403, 429 or recognized challenge is recorded separately from local restrictions. A successful HTTP response with an empty DOM may be an application failure. SeoForge does not solve CAPTCHAs, rotate identities or claim universal access. The aim is inspectable content and a clear account of what was actually read.

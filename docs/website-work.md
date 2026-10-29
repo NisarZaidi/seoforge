@@ -1,6 +1,6 @@
 # Improve a website and keep the work visible
 
-Use this workflow when the user asks BeyondSEO to apply improvements, maintain a website or carry out a goal. A request for advice or an audit remains advice or an audit. The user's existing chat is the control surface. A dashboard is optional, read-only monitoring; it is not another AI subscription or a worker.
+Use this workflow when the user asks SeoForge to apply improvements, maintain a website or carry out a goal. A request for advice or an audit remains advice or an audit. The user's existing chat is the control surface. A dashboard is optional, read-only monitoring; it is not another AI subscription or a worker.
 
 ## Start with the business and the actual access
 
@@ -49,13 +49,13 @@ After an authorised edit, capture the affected URL(s) in a fresh crawl with comp
 Replace paths with private locations outside the website and the skill. These commands record work; the host agent still makes and checks the edits.
 
 ```sh
-beyondseo project init --project /private/client-project --url https://example.com --goal "Improve service enquiries while preserving the design"
-beyondseo project profile --project /private/client-project --input /private/business.json
-beyondseo project plan --project /private/client-project --input /private/jobs.json
-beyondseo project status --project /private/client-project
-beyondseo project update --project /private/client-project --job service-title --state running --note "Baseline saved; implementing the approved title"
-beyondseo project update --project /private/client-project --job service-title --state applied --note "Preview updated; live verification remains"
-beyondseo project update --project /private/client-project --job service-title --state verified --note "Acceptance checks passed within recorded coverage" --evidence /private/check.json
+seoforge project init --project /private/client-project --url https://example.com --goal "Improve service enquiries while preserving the design"
+seoforge project profile --project /private/client-project --input /private/business.json
+seoforge project plan --project /private/client-project --input /private/jobs.json
+seoforge project status --project /private/client-project
+seoforge project update --project /private/client-project --job service-title --state running --note "Baseline saved; implementing the approved title"
+seoforge project update --project /private/client-project --job service-title --state applied --note "Preview updated; live verification remains"
+seoforge project update --project /private/client-project --job service-title --state verified --note "Acceptance checks passed within recorded coverage" --evidence /private/check.json
 ```
 
 Profile fields: `business`, `services`, `customers`, `offices`, `markets`, `languages`, `sources`, `unknowns`, `constraints`, `access_route`. Save context only, never credentials.
@@ -66,7 +66,7 @@ Verification JSON needs `url`, timezone-qualified `captured_at`, `checks` (each 
 
 ## Offer monitoring once
 
-Monitoring is a shared BeyondSEO capability for **ChatGPT Work, Codex, Claude, Hermes, OpenClaw, Cursor and agents managing Lovable/Vercel projects**. It is not restricted to website builders. For any authorised ongoing job, retain the same business context, work plan, evidence and activity; offer the same optional monitor. Ordinary one-off questions do not require dashboard setup.
+Monitoring is a shared SeoForge capability for **ChatGPT Work, Codex, Claude, Hermes, OpenClaw, Cursor and agents managing Lovable/Vercel projects**. It is not restricted to website builders. For any authorised ongoing job, retain the same business context, work plan, evidence and activity; offer the same optional monitor. Ordinary one-off questions do not require dashboard setup.
 
 | Execution environment | How the user views progress |
 |---|---|
@@ -80,17 +80,17 @@ Detect capabilities, not product names. Do not expose a local port publicly or c
 After the user agrees to a private monitor, ask their preferred check cadence and summary frequency together if not already supplied. Progress records update after actions; dashboard refresh is not audit frequency. The dashboard never sends messages or incurs model usage itself.
 
 ```sh
-beyondseo project dashboard --project /private/client-project --consent --refresh-seconds 30
-beyondseo project dashboard --project /private/client-project --consent --serve --port 8765
+seoforge project dashboard --project /private/client-project --consent --refresh-seconds 30
+seoforge project dashboard --project /private/client-project --consent --serve --port 8765
 ```
 
 The first command creates `dashboard.html`. Open that private file in the host. The second prints a private localhost URL and serves current database state until stopped. It binds only to 127.0.0.1, serves one secret path, and exposes no editing API. It is not remotely accessible from a cloud chat. Do not deploy the HTML or database publicly. Sharing/hosting needs separate authorisation and authentication. Consent persists in the project; don't ask the user repeatedly when restarting an agreed monitor.
 
 ```sh
-beyondseo project schedule --project /private/client-project --interval 604800 --max-pages 10
-beyondseo project run --project /private/client-project
-beyondseo project pause --project /private/client-project
-beyondseo project resume --project /private/client-project
+seoforge project schedule --project /private/client-project --interval 604800 --max-pages 10
+seoforge project run --project /private/client-project
+seoforge project pause --project /private/client-project
+seoforge project resume --project /private/client-project
 ```
 
 `schedule` saves the requested cadence, not an OS/host cron registration. A host scheduler must invoke `project run` in this environment. Run one observed trial first. Each invocation claims at most one due **read-only HTTP crawl**, retains evidence and sets the next due time. Duplicate/overlapping invocations do not create extra reviews. Empty captures are blocked, not a clean audit. Pausing prevents future claims; it does not kill a currently executing crawl. After a hard interruption, confirm the old process stopped before `project recover --run RUN_ID --note "..."`. Nothing silently retries website writes. The local computer or configured remote worker must remain available. Agent reasoning, content changes, summaries and reports need their own supported host task, bounded scope and verification; the native runner does not invoke a model.
@@ -100,8 +100,8 @@ beyondseo project resume --project /private/client-project
 For an existing static HTML file, prepare a reviewed JSON object with optional `title`, `description`, `canonical`, `language`, `copy` (`selector` and replacement `text`) and `schema` (JSON-LD). Copy replacements support plain-text paragraphs/headings with exactly one match and 80–115% of the existing character count. Complex markup, framework templates, existing JSON-LD merges and new accordion components belong in the native editor.
 
 ```sh
-beyondseo onsite plan --site /private/site --file services.html --changes /private/changes.json --out /private/change-plan
-beyondseo edit apply --site /private/site --plan /private/change-plan --expect-plan REVIEWED_SHA256
+seoforge onsite plan --site /private/site --file services.html --changes /private/changes.json --out /private/change-plan
+seoforge edit apply --site /private/site --plan /private/change-plan --expect-plan REVIEWED_SHA256
 ```
 
 Use `--connection /private/connection.json` instead of `--site` for SFTP/FTPS. The plan is not applied automatically. Review its diff and `checks.json`. Use the existing `edit rollback` with the same plan/hash if needed; never overwrite newer changes.
@@ -110,4 +110,4 @@ Use `--connection /private/connection.json` instead of `--site` for SFTP/FTPS. T
 
 ## Off-site plan on the same project
 
-Use the bundled posting library and reputation research. Select destinations by audience/service/market fit, current rules and capacity. Provide exact submission links, free/paid status and check date, eligibility, purpose, article title, outline, search intent, related questions, target page, acceptable link placement and proposed dates. Include suitable profiles, industry directories, social presence and genuine customer-review opportunities when relevant. Do not make 20 articles/10 comments a universal quota or invent keyword volume/authority. Add these as `offsite_plan` jobs: completing a plan is not acquiring a backlink. External posting, reviews, purchases and messages are outside this implementation workflow. The customer signs up and publishes; BeyondSEO can draft requested content and later verify supplied placement URLs.
+Use the bundled posting library and reputation research. Select destinations by audience/service/market fit, current rules and capacity. Provide exact submission links, free/paid status and check date, eligibility, purpose, article title, outline, search intent, related questions, target page, acceptable link placement and proposed dates. Include suitable profiles, industry directories, social presence and genuine customer-review opportunities when relevant. Do not make 20 articles/10 comments a universal quota or invent keyword volume/authority. Add these as `offsite_plan` jobs: completing a plan is not acquiring a backlink. External posting, reviews, purchases and messages are outside this implementation workflow. The customer signs up and publishes; SeoForge can draft requested content and later verify supplied placement URLs.

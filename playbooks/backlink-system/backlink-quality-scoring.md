@@ -1,6 +1,6 @@
 # Backlink quality and opportunities
 
-Use the [BeyondSEO Reputation Score](../../references/reputation.md) for verified existing links and mentions. Its rubric, publisher grouping, unknown-data treatment and formula are the single scoring method. Report the estimate, range, review attribution and sample coverage together.
+Use the [SeoForge Reputation Score](../../references/reputation.md) for verified existing links and mentions. Its rubric, publisher grouping, unknown-data treatment and formula are the single scoring method. Report the estimate, range, review attribution and sample coverage together.
 
 An unbuilt placement is a prospect, not an observed backlink. Evaluate prospects qualitatively:
 

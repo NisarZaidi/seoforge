@@ -1,6 +1,6 @@
 # Conversion SEO Audit
 
-This file defines how BeyondSEO audits whether organic traffic turns into real business outcomes.
+This file defines how SeoForge audits whether organic traffic turns into real business outcomes.
 
 SEO is not only rankings. If traffic does not convert into calls, queries, appointments, enrollments, purchases, or qualified leads, the SEO system is incomplete.
 

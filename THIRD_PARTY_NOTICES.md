@@ -1,6 +1,6 @@
 # Third-party dependencies
 
-BeyondSEO's crawler, queue, extraction rules, reporting and command-line interface are maintained in this repository. The project uses the following independently distributed libraries:
+SeoForge's crawler, queue, extraction rules, reporting and command-line interface are maintained in this repository. The project uses the following independently distributed libraries:
 
 | Component | Purpose | Upstream |
 |---|---|---|

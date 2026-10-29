@@ -28,7 +28,7 @@ A missing required local browser can use `browser-setup` when setup is authorize
 After reviewing the client and selecting comparable businesses:
 
 ```sh
-beyondseo research-plan --profile runs/client-profile/profile.json --brand "Example Company" \
+seoforge research-plan --profile runs/client-profile/profile.json --brand "Example Company" \
   --selection runs/competitors/competitors.json --out runs/research-plan
 ```
 
@@ -48,10 +48,10 @@ These are transparent defaults, not scientific sufficiency thresholds or a claim
 For each website, execute Google/host observations first and pass them into discovery:
 
 ```sh
-beyondseo discover --queries runs/research-plan/reputation-queries-0.json \
+seoforge discover --queries runs/research-plan/reputation-queries-0.json \
   --host-results runs/client-host-search.json --target https://example.com \
   --max-requests 48 --seconds 180 --cache runs/search-cache --out runs/client-discovery
-beyondseo backlinks --sources runs/client-discovery/sources.csv --target https://example.com \
+seoforge backlinks --sources runs/client-discovery/sources.csv --target https://example.com \
   --brand "Example Company" --max-sources 30 --out runs/client-links
 ```
 
@@ -76,7 +76,7 @@ Create a manifest whose file paths are relative to the manifest:
 ```
 
 ```sh
-beyondseo compare-reputation --manifest runs/comparison-input.json --out runs/comparison
+seoforge compare-reputation --manifest runs/comparison-input.json --out runs/comparison
 ```
 
 Include every planned cohort member. The command recalculates the existing model 1.1 from captured source evidence; it does not accept a manually supplied score. It preserves the discovered-but-unchecked source count. It requires matching completed query families, providers, observable contexts, sample counts, time windows and sufficiently reviewed evidence. Verification/review coverage cannot differ by more than ten percentage points. These are conservative comparison rules, not calibrated market metrics.

@@ -6,14 +6,14 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-from beyondseo.backlinks import source_rows
-from beyondseo.diagnostics import failure_detail
-from beyondseo.discovery import RequestBudget, consolidate, discover, host_attempts, parse_search
-from beyondseo.evidence import capture_quality
-from beyondseo.extract import extract, page_findings
-from beyondseo.findings import audit_report
-from beyondseo.research import FIELDS, profile, research_queries, select_competitors
-from beyondseo.review import readiness
+from seoforge.reputation.backlinks import source_rows
+from seoforge.analyze.diagnostics import failure_detail
+from seoforge.research.profile.discovery import RequestBudget, consolidate, discover, host_attempts, parse_search
+from seoforge.extract.evidence import capture_quality
+from seoforge.extract.html import extract, page_findings
+from seoforge.analyze.findings import audit_report
+from seoforge.research.profile import FIELDS, profile, research_queries, select_competitors
+from seoforge.analyze.review import readiness
 
 DATE = "2026-01-01T00:00:00+00:00"
 DDG = '<div class="result"><a class="result__a" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fagency.test%2F">Agency</a><a class="result__snippet">A mention is only a lead.</a></div>'
@@ -225,7 +225,7 @@ class DiscoveryTests(unittest.TestCase):
             budget.take()
 
     def test_cache_preserves_capture_date_and_skips_fetch(self):
-        from beyondseo.network import utcnow
+        from seoforge.crawl.network import utcnow
 
         live = {**attempt(), "captured_at": utcnow()}
         adapter = Mock(return_value=live)
@@ -302,8 +302,8 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(found["attempts"][1]["fallback_from"]["status"], "tool_unavailable")
 
     def test_snippet_is_not_link_evidence_in_source_checker(self):
-        from beyondseo.backlinks import check_sources
-        from beyondseo.reputation import assess
+        from seoforge.reputation.backlinks import check_sources
+        from seoforge.reputation.scoring import assess
 
         discover(
             [{"query": "one"}], self.root / "search", adapters={"fallback": lambda _: attempt()}
@@ -318,7 +318,7 @@ class DiscoveryTests(unittest.TestCase):
             "representation": "http",
             "error": "",
         }
-        with patch("beyondseo.backlinks.verify_source", return_value=verified):
+        with patch("seoforge.reputation.backlinks.verify_source", return_value=verified):
             result = check_sources(
                 self.root / "search/sources.csv",
                 "https://client.test",
@@ -331,7 +331,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(rating["observed_link_pages"], 0)
 
     def test_doctor_preserves_execution_error(self):
-        from beyondseo.doctor import environment_report
+        from seoforge.crawl.doctor import environment_report
 
         with (
             patch("importlib.metadata.version", return_value="1.0"),
@@ -348,7 +348,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(result["checks"]["search_discovery"]["status"], "not_tested")
 
     def test_unrecognized_saved_page_never_claims_zero_search_results(self):
-        from beyondseo.reputation import import_search_html
+        from seoforge.reputation.scoring import import_search_html
 
         saved = self.root / "unknown.html"
         saved.write_text("<html>A consent screen with no result structure.</html>")
@@ -616,14 +616,14 @@ class ResearchTests(unittest.TestCase):
             audit_report(self.root / "partial", self.root / "report", reviewed_findings=[item])
 
     def test_native_http_crawl_survives_missing_browser(self):
-        from beyondseo.engine import Crawler
-        from beyondseo.network import Config
+        from seoforge.crawl.engine import Crawler
+        from seoforge.crawl.network import Config
 
         record = page(html='<title>Shell</title><script src="app.js"></script>')
         with (
             patch.object(Crawler, "fetch_page", return_value=record),
             patch(
-                "beyondseo.render.render_page",
+                "seoforge.crawl.render.render_page",
                 side_effect=ModuleNotFoundError("No module named playwright"),
             ),
         ):
@@ -644,14 +644,14 @@ class ResearchTests(unittest.TestCase):
 
 class PartialLinkTests(unittest.TestCase):
     def test_unfinished_render_does_not_establish_link_absence(self):
-        from beyondseo.backlinks import verify_source
+        from seoforge.reputation.backlinks import verify_source
 
         record = page()
         record["rendered"] = {"readiness": {"deadline_reached": True}}
         with tempfile.TemporaryDirectory() as folder:
             with (
-                patch("beyondseo.backlinks.Crawler") as crawler,
-                patch("beyondseo.backlinks.read_pages", return_value=[record]),
+                patch("seoforge.reputation.backlinks.Crawler") as crawler,
+                patch("seoforge.reputation.backlinks.read_pages", return_value=[record]),
             ):
                 crawler.return_value.run.return_value = {"coverage_limited": True}
                 result = verify_source(
@@ -662,18 +662,18 @@ class PartialLinkTests(unittest.TestCase):
 
 class BrowserSetupTests(unittest.TestCase):
     def test_ready_browser_is_reused_without_installation(self):
-        from beyondseo.doctor import prepare_browser
+        from seoforge.crawl.doctor import prepare_browser
 
         with (
-            patch("beyondseo.doctor.environment_report", return_value={"browser_ready": True}),
-            patch("beyondseo.doctor.subprocess.run") as install,
+            patch("seoforge.crawl.doctor.environment_report", return_value={"browser_ready": True}),
+            patch("seoforge.crawl.doctor.subprocess.run") as install,
         ):
             result = prepare_browser()
         self.assertEqual(result["status"], "already_ready")
         install.assert_not_called()
 
     def test_missing_components_installed_then_launch_checked(self):
-        from beyondseo.doctor import prepare_browser
+        from seoforge.crawl.doctor import prepare_browser
 
         missing = {
             "browser_ready": False,
@@ -682,12 +682,12 @@ class BrowserSetupTests(unittest.TestCase):
         }
         with (
             patch(
-                "beyondseo.doctor.environment_report",
+                "seoforge.crawl.doctor.environment_report",
                 side_effect=[missing, {"browser_ready": True}],
             ),
-            patch("beyondseo.doctor.sys.prefix", "/approved/runtime"),
-            patch("beyondseo.doctor.sys.base_prefix", "/system"),
-            patch("beyondseo.doctor.subprocess.run") as install,
+            patch("seoforge.crawl.doctor.sys.prefix", "/approved/runtime"),
+            patch("seoforge.crawl.doctor.sys.base_prefix", "/system"),
+            patch("seoforge.crawl.doctor.subprocess.run") as install,
         ):
             install.return_value.returncode = 0
             result = prepare_browser()
@@ -699,7 +699,7 @@ class BrowserSetupTests(unittest.TestCase):
         )
 
     def test_browser_denial_does_not_trigger_reinstallation(self):
-        from beyondseo.doctor import prepare_browser
+        from seoforge.crawl.doctor import prepare_browser
 
         denied = {
             "browser_ready": False,
@@ -710,8 +710,8 @@ class BrowserSetupTests(unittest.TestCase):
             },
         }
         with (
-            patch("beyondseo.doctor.environment_report", return_value=denied),
-            patch("beyondseo.doctor.subprocess.run") as install,
+            patch("seoforge.crawl.doctor.environment_report", return_value=denied),
+            patch("seoforge.crawl.doctor.subprocess.run") as install,
         ):
             result = prepare_browser()
         self.assertEqual(result["status"], "blocked")

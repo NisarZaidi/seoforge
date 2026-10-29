@@ -21,7 +21,7 @@ body:
     id: environment
     attributes:
       label: Environment
-      description: Summarize your operating system, Python/BeyondSEO versions and the failing capability. Do not paste raw doctor output; remove usernames, home paths, device details and account identifiers.
+      description: Summarize your operating system, Python/SeoForge versions and the failing capability. Do not paste raw doctor output; remove usernames, home paths, device details and account identifiers.
       render: json
     validations:
       required: true

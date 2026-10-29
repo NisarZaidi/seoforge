@@ -1,6 +1,6 @@
 # A score you can inspect
 
-The **BeyondSEO Reputation Score** answers a specific question: how much reputation evidence does this observed sample support? Its 0–100 scale is our own transparent measure. It is not a search-engine ranking factor, a probability of being cited, or a replica of another company's authority metric.
+The **SeoForge Reputation Score** answers a specific question: how much reputation evidence does this observed sample support? Its 0–100 scale is our own transparent measure. It is not a search-engine ranking factor, a probability of being cited, or a replica of another company's authority metric.
 
 ## How we earn the number
 
@@ -25,7 +25,7 @@ The ceiling is **49/100**. It is a conservative product rule, not a statisticall
 
 Large comparative authority models depend on their provider's crawled link graph, model training, ranking observations and refresh cycle. Published descriptions of relevant signals do not supply a reproducible trained model. Applying a logarithm to a small backlink count would not recreate those systems.
 
-BeyondSEO follows useful evidence principles: verified links, publisher diversity, source review, consistent competitor comparisons and dated repeat measurements. It does not rename its score “Domain Authority,” manufacture a provider's number or claim statistical equivalence. Keep technical readiness, actual visibility and reputation evidence as separate measurements.
+SeoForge follows useful evidence principles: verified links, publisher diversity, source review, consistent competitor comparisons and dated repeat measurements. It does not rename its score “Domain Authority,” manufacture a provider's number or claim statistical equivalence. Keep technical readiness, actual visibility and reputation evidence as separate measurements.
 
 ## A worked example
 

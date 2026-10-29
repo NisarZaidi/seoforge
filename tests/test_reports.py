@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from beyondseo.reports import PDFUnavailable, asset, export_report, from_audit, validate_report
+from seoforge.report.present import PDFUnavailable, asset, export_report, from_audit, validate_report
 
 ROOT = Path(__file__).resolve().parents[1]
 PDF_READY = bool(importlib.util.find_spec("reportlab") and importlib.util.find_spec("pypdf"))
@@ -26,7 +26,7 @@ class ReportTests(unittest.TestCase):
 
     def test_product_logo_is_the_exact_existing_asset(self):
         self.assertEqual(
-            asset("beyondseo-logo.png"), (ROOT / "assets/beyondseo-logo.png").read_bytes()
+            asset("seoforge-logo.png"), (ROOT / "assets/seoforge-logo.png").read_bytes()
         )
 
     def test_html_is_self_contained_and_treats_content_as_text(self):
@@ -46,7 +46,7 @@ class ReportTests(unittest.TestCase):
         self.assertEqual(data["client"], '<script>alert("x")</script>')
 
     def test_missing_pdf_dependency_preserves_html_and_reports_precise_limit(self):
-        with patch("beyondseo.reports.pdf_report", side_effect=PDFUnavailable("missing reportlab")):
+        with patch("seoforge.report.present.pdf_report", side_effect=PDFUnavailable("missing reportlab")):
             result = export_report(sample(), self.out)
         self.assertEqual(result["status"], "html_only")
         self.assertIn("missing reportlab", result["pdf_limitation"])
@@ -93,7 +93,7 @@ class ReportTests(unittest.TestCase):
     def test_failed_explicit_overwrite_does_not_leave_a_stale_pdf(self):
         (self.out / "report.pdf").write_bytes(b"old client's output")
         with patch(
-            "beyondseo.reports.pdf_report", side_effect=PDFUnavailable("unsupported script")
+            "seoforge.report.present.pdf_report", side_effect=PDFUnavailable("unsupported script")
         ):
             result = export_report(sample(), self.out, overwrite=True)
         self.assertEqual(result["status"], "html_only")
@@ -178,7 +178,7 @@ class ReportTests(unittest.TestCase):
         result = export_report(sample(), self.out)
         self.assertEqual(result["status"], "complete")
         pdf = PdfReader(self.out / "report.pdf")
-        self.assertEqual(pdf.metadata.author, "BeyondSEO")
+        self.assertEqual(pdf.metadata.author, "SeoForge")
         self.assertEqual(len(pdf.outline), 9)
         for page in pdf.pages:
             self.assertGreater(len(page.extract_text()), 140, "Unexpected empty overflow page")

@@ -1,10 +1,10 @@
-# What BeyondSEO installs and accesses
+# What SeoForge installs and accesses
 
-BeyondSEO is a collection of SEO instructions, references and Python source. The same package supports audits, content planning, competitors, backlinks and optional reviewed website changes. Installation needs no website credentials or SEO-service API key.
+SeoForge is a collection of SEO instructions, references and Python source. The same package supports audits, content planning, competitors, backlinks and optional reviewed website changes. Installation needs no website credentials or SEO-service API key.
 
 ## Files in the skill bundle
 
-The upload archive has one `beyondseo/` folder containing `SKILL.md`, `src/`, `scripts/`, `playbooks/`, `references/`, `docs/`, `examples/`, artwork, license and project information. All native crawler and editing code is included as readable source. The backlink catalog contains public candidate websites, not credentials or acquired backlinks.
+The upload archive has one `seoforge/` folder containing `SKILL.md`, `src/`, `scripts/`, `playbooks/`, `references/`, `docs/`, artwork, license and project information. Local `examples/` stay in the full git repository for practice crawls; they are omitted from the Claude-sized skill ZIP to stay under host file limits. All native crawler and editing code is included as readable source. The backlink catalog contains public candidate websites, not credentials or acquired backlinks.
 
 Developer tests, Git history, virtual environments, caches and client run folders are excluded from the installation bundle. Tests remain in the public source repository. A SHA-256 sidecar identifies the archive bytes; the installation receipt identifies the bundled file bytes. Neither is a safety certification.
 
@@ -24,7 +24,7 @@ Developer tests, Git history, virtual environments, caches and client run folder
 | Watch changes | Creates a bounded series of crawl snapshots | Repeats the configured crawl; does not publish or create a host automation |
 | Apply a website edit | Reads the specified existing content file; stages a diff, backup and reviewed plan | Optional SFTP/FTPS to the configured host, only for the authorized edit |
 
-`pyproject.toml` declares dependencies. Beautiful Soup parses HTML; Colorama formats terminal output. Playwright/Chromium is optional for rendered pages, and Paramiko is optional for SFTP. The runtime does not make language-model API calls. There is no BeyondSEO telemetry endpoint, remote command service or automatic publishing step.
+`pyproject.toml` declares dependencies. Beautiful Soup parses HTML; Colorama formats terminal output. Playwright/Chromium is optional for rendered pages, and Paramiko is optional for SFTP. The runtime does not make language-model API calls. There is no SeoForge telemetry endpoint, remote command service or automatic publishing step.
 
 ## Network and content boundaries
 
@@ -42,7 +42,7 @@ Keep credentials, connection profiles, backups and reports outside the shared sk
 
 An uploaded skill directory may be read-only or disallow executable files. Use an execution directory approved by the host for `setup.py --venv`, then pass the same directory to `run.py --runtime`. The setup builds from a temporary source copy within that runtime, preserving the mounted skill. This requires real execution permission; the option does not grant or alter it.
 
-BeyondSEO does not alter sandbox policies, workspace roles, safety scanners, approval settings, shell startup files or agent system instructions. If a host rejects a save or scan, preserve its exact diagnostic and correct the reported issue through the supported process. An HTTP 422 without details is an unexplained submission rejection, not evidence of a particular scan rule.
+SeoForge does not alter sandbox policies, workspace roles, safety scanners, approval settings, shell startup files or agent system instructions. If a host rejects a save or scan, preserve its exact diagnostic and correct the reported issue through the supported process. An HTTP 422 without details is an unexplained submission rejection, not evidence of a particular scan rule.
 
 ## Review and report an issue
 

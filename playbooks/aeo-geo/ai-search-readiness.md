@@ -1,6 +1,6 @@
 # AI Search Readiness
 
-This file teaches BeyondSEO how to audit whether a website is ready for AI-powered search, AI Overviews, AI Mode, conversational search, and answer engines.
+This file teaches SeoForge how to audit whether a website is ready for AI-powered search, AI Overviews, AI Mode, conversational search, and answer engines.
 
 ## Purpose
 

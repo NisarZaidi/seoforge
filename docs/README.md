@@ -1,60 +1,41 @@
-# BeyondSEO documentation
+# SeoForge documentation
 
-Start with the task you want to complete. Each guide connects the commands, evidence and decisions needed for that job.
+Start with the task you want to complete.
 
-New in 2.9.2: choose how much of your site to check, continue saved audits and see clearer coverage and readiness results. Read [what changed](../CHANGELOG.md) or go straight to [audit-depth options](../references/crawler.md#choose-the-audit-depth).
-
-## Start using BeyondSEO
+## Start here
 
 | I want to… | Read this |
 |---|---|
-| Install the engine and run my first crawl | [Setup and troubleshooting](setup.md) |
-| Use an AI assistant, coding agent or website builder | [Assistant installation](agent-installation.md) |
-| Review package permissions or diagnose an installation rejection | [Package permissions](permissions.md) |
-| Understand what the complete SEO house can do | [Capabilities and example questions](questions.md) |
-| Practice without touching a live website | [Local examples](../examples/README.md) |
-| Run the entire audit workflow | [SEO house workflow](../playbooks/core/seo-house-workflow.md) |
-| Export a professional branded PDF or HTML report | [Report design and content format](branded-reports.md) |
+| Install and run the first audit | [Setup](setup.md) |
+| Use Cursor, Claude, or ChatGPT | [Agent installation](agent-installation.md) |
+| Understand permissions | [Permissions](permissions.md) |
+| See capabilities & example questions | [Questions](questions.md) |
+| Practice offline | `examples/README.md` (git checkout) |
+| Full SEO house workflow | [playbooks/core/seo-house-workflow.md](../playbooks/core/seo-house-workflow.md) |
+| Branded HTML/PDF reports | [Branded reports](branded-reports.md) |
 
-## Crawl and investigate
-
-| Guide | Covers |
-|---|---|
-| [CLI reference](../references/crawler.md) | Commands, arguments, scope, limits and evidence outputs |
-| [Browser behavior](browser.md) | HTTP versus JavaScript, waiting, scrolling, public dependencies and access failures |
-| [Discovery and competitor research](discovery-and-competitors.md) | Native and host fallbacks, reviewed business profiles, relevant competitors and evidence-based findings |
-| [Browser-assisted search](browser-search.md) | Reuse a host browser, Google navigation and optional free Chromium setup |
-| [Discovery diagnostics](discovery-diagnostics.md) | Distinguish installation, execution, network, provider and parsing failures |
-| [Architecture](architecture.md) | Fetching, extraction, queue persistence, modules and Python usage |
-| [Capability map](../references/capabilities.md) | What is implemented, what is guided analysis and what requires additional evidence |
-
-## Reputation and backlinks
+## Crawl & analysis
 
 | Guide | Covers |
 |---|---|
-| [Source catalog](backlink-source-catalog.md) | 206 website/community entries from the source PDF, with source claims and review status |
-| [Posting guide](backlink-posting-guide.md) | Website-specific 15/20-source plans: what to write, how to post, timing and authority limits |
-| [Prospect directory](reputation-prospects.md) | Seven additional researched routes for credible profiles and recognition |
-| [Scoring explained](scoring-explained.md) | What the score means, why confidence matters and a worked example |
-| [Complete reputation method](../references/reputation.md) | Discovery/import, native verification, source reviews, formulas and limitations |
-| [Reputation growth plan](../playbooks/backlink-system/reputation-growth-plan.md) | Relevant contributions, useful assets, review evidence and next actions |
+| [CLI reference](../references/crawler.md) | Commands, scope, limits, outputs |
+| [Architecture](architecture.md) | Modules and data flow |
+| [Browser behavior](browser.md) | HTTP vs JavaScript rendering |
+| [Discovery & competitors](discovery-and-competitors.md) | Profiles, competitors, evidence |
+| [Capability map](../references/capabilities.md) | Implemented vs guided analysis |
+| [Measurement boundaries](../references/measurement-boundaries.md) | What a crawl can and cannot prove |
 
-## Strategy, content and follow-up
+## Reputation
 
 | Guide | Covers |
 |---|---|
-| [The complete SEO house](seo-house.md) | SEO, AEO, GEO, entities, authority, reputation and how they connect |
-| [Audit delivery standard](../references/audit-delivery.md) | Friendly reports, required audit areas, competitors and actionable plans |
-| [Friendly advisor](../playbooks/core/friendly-advisor.md) | How to explain findings and write useful client advice |
-| [Complete plan template](../playbooks/templates/complete-seo-plan.md) | Priorities, responsibilities, dependencies and acceptance checks |
-| [Apply website improvements and follow progress](website-work.md) | Design protection, approved edits, optional private monitoring and off-site plans |
-| [Review and improve](operations.md) | Comparisons, bounded loops, hosting access, reviewed edits and rollback |
-| [Measurement boundaries](../references/measurement-boundaries.md) | What a crawl establishes and which claims need separate measurements |
+| [Source catalog](backlink-source-catalog.md) | Posting library overview |
+| [Posting guide](backlink-posting-guide.md) | Practical outreach plans |
+| [Scoring explained](scoring-explained.md) | Conservative reputation score |
+| [Reputation method](../references/reputation.md) | Verification details |
 
-## Project and community
+## Project
 
-[Development](development.md) · [Contributing](../CONTRIBUTING.md) · [Security](../SECURITY.md) · [Changelog](../CHANGELOG.md) · [MIT license](../LICENSE) · [Dependency notices](../THIRD_PARTY_NOTICES.md)
+[Development](development.md) · [Contributing](../CONTRIBUTING.md) · [Security](../SECURITY.md) · [Changelog](../CHANGELOG.md) · [License](../LICENSE)
 
-Questions about expected behavior belong in a [GitHub issue](https://github.com/beyondtahir/beyondseo/issues). Include the version, command, environment and a small redacted reproduction. Contact [Beyond Tahir](https://beyondtahir.com) for consulting, training or private business context.
-
-- [Deep research and fair competitor comparisons](deep-research.md): browser-first discovery, shared budgets, keyword/AI-readiness analysis and evidence-supported standing.
+Questions about behavior: open a [GitHub issue](https://github.com/NisarZaidi/seoforge/issues) with version, command, environment, and a redacted reproduction.

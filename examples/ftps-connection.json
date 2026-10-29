@@ -3,6 +3,6 @@
   "host": "hosting.example.com",
   "port": 21,
   "root": "/public_html",
-  "username_env": "BEYONDSEO_USERNAME",
-  "password_env": "BEYONDSEO_PASSWORD"
+  "username_env": "SEOFORGE_USERNAME",
+  "password_env": "SEOFORGE_PASSWORD"
 }

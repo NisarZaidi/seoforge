@@ -1,6 +1,6 @@
 # Paid Backlink Evaluation
 
-This file defines how BeyondSEO evaluates paid backlink opportunities.
+This file defines how SeoForge evaluates paid backlink opportunities.
 
 Evaluate paid advertising and sponsorship against referral/brand objectives and verified terms. Paid links should be appropriately qualified; do not treat a branded anchor as a substitute for link qualification or promise ranking credit. See [Google’s link-spam guidance](https://developers.google.com/search/docs/essentials/spam-policies#link-spam).
 

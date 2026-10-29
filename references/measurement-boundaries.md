@@ -3,14 +3,14 @@
 | Evidence | Supported conclusion | Unsupported shortcut |
 |---|---|---|
 | HTTP status/headers/HTML | The crawler observed that response at that time | Google has indexed or ranked the URL |
-| Robots rules | Whether BeyondSEO may crawl under the retrieved policy | Whether every bot may crawl, or whether the URL is absent from search |
+| Robots rules | Whether SeoForge may crawl under the retrieved policy | Whether every bot may crawl, or whether the URL is absent from search |
 | noindex/canonical declaration | The declaration exists and should be reviewed against page intent | Google accepted it, or every noindex/canonical is a defect |
 | JSON-LD parsing | JSON syntax and type declarations | Schema.org semantic validity or rich-result eligibility |
 | HTML word count | Amount of extracted text by this method | Content usefulness or a required word count |
 | Sitemap + sampled link graph | A URL lacks observed inbound anchors in the sample | A confirmed whole-site orphan |
 | Fetch elapsed time | Local wait/retry/transfer duration | TTFB, page-load performance, LCP, INP or CLS |
 | On-site outbound links | This page links to these destinations | Its complete inbound backlink profile or independent reputation |
-| BeyondSEO Reputation Score | A transparent estimate for the observed source sample, with a range and coverage | Whole-web backlink totals, engine authority, sentiment or ranking predictions |
+| SeoForge Reputation Score | A transparent estimate for the observed source sample, with a range and coverage | Whole-web backlink totals, engine authority, sentiment or ranking predictions |
 | Named competitor pages | Observed content/structure differences | Competitor ranking, search demand or traffic |
 | Answer blocks, entity pages, proof links | Content readiness observations | Visibility or citation by an AI answer system |
 | Dated supplied GSC/analytics exports | Metrics as defined and sampled by those exports | Whole-market demand, a ranking guarantee or unobserved conversions |

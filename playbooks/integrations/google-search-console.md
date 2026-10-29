@@ -1,6 +1,6 @@
 # Google Search Console Workflow
 
-How BeyondSEO should use GSC exports or access.
+How SeoForge should use GSC exports or access.
 
 ---
 

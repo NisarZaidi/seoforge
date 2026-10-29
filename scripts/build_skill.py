@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a complete beyondseo/ upload ZIP from reviewed source, with a SHA-256 sidecar."""
+"""Build a complete seoforge/ upload ZIP from reviewed source, with a SHA-256 sidecar."""
 
 import argparse
 import hashlib
@@ -24,7 +24,7 @@ def build(source, output):
         raise ValueError("Output already exists. Choose a new archive filename.")
     contents = {p.relative_to(source).as_posix(): p.read_bytes() for p in bundle_files(source)}
     manifest = {name: hashlib.sha256(data).hexdigest() for name, data in contents.items()}
-    contents["beyondseo-install.json"] = (
+    contents["seoforge-install.json"] = (
         json.dumps({"files_sha256": manifest}, indent=2) + "\n"
     ).encode()
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -33,7 +33,7 @@ def build(source, output):
         with zipfile.ZipFile(output, "x", compression=zipfile.ZIP_DEFLATED) as archive:
             created = True
             for name, data in sorted(contents.items()):
-                item = zipfile.ZipInfo("beyondseo/" + name, date_time=(2020, 1, 1, 0, 0, 0))
+                item = zipfile.ZipInfo("seoforge/" + name, date_time=(2020, 1, 1, 0, 0, 0))
                 item.create_system = 3
                 item.external_attr = 0o100644 << 16
                 item.compress_type = zipfile.ZIP_DEFLATED
@@ -45,7 +45,7 @@ def build(source, output):
         if created:
             output.unlink(missing_ok=True)
         raise
-    return {**report, "archive": str(output), "sha256": digest, "archive_root": "beyondseo/"}
+    return {**report, "archive": str(output), "sha256": digest, "archive_root": "seoforge/"}
 
 
 def main():

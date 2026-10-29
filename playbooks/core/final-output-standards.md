@@ -1,6 +1,6 @@
 # Final Output Standards
 
-Defines what every BeyondSEO response must include.
+Defines what every SeoForge response must include.
 
 ---
 

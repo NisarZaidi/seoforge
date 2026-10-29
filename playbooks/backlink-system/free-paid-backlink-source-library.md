@@ -33,13 +33,13 @@ For every chosen destination provide:
 
 Give a short “start here” group, a second group for later weeks and alternatives where several platforms serve the same purpose. Do not create multiple disposable owned blogs. When asked to write, produce usable drafts for the agreed priority sources, adapted to the platform; do not stop at generic writing advice.
 
-## DA, DR and BeyondSEO's own score
+## DA, DR and SeoForge's own score
 
 The PDF column says **Domain Rating (DR)**, not DA. Its measurement provider and date are absent, and 28 site entries contain conflicting values. Store those numbers as **sheet DR, unverified**; do not rename them DA, select the largest duplicate value, treat a zero as proof of no authority, or use them to rank recommendations. Current DA and current DR are unavailable unless the user supplies a dated measurement or a suitable source can be verified. No paid metric service is required.
 
 Explain authority in useful terms: relevant expertise, authentic work, audience fit, editorial selection and independent proof. An owned profile or self-published article is not an independent endorsement. A platform's reputation is not automatically transferred to each new post.
 
-The [BeyondSEO Reputation Score](../../references/reputation.md) evaluates observed evidence about the target website. Keep its conservative model and confidence rules separate from this prospect directory. An unbuilt placement cannot increase the target's observed score.
+The [SeoForge Reputation Score](../../references/reputation.md) evaluates observed evidence about the target website. Keep its conservative model and confidence rules separate from this prospect directory. An unbuilt placement cannot increase the target's observed score.
 
 ## Read the sheet's link labels correctly
 

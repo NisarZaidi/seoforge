@@ -15,8 +15,8 @@ from xml.etree import ElementTree as ET
 
 from bs4 import BeautifulSoup
 
-from seoforge.crawl.network import normalize_url
 from seoforge.cli.publishing import LIMIT, open_store, stage, text_bytes
+from seoforge.crawl.network import normalize_url
 
 
 def single(soup, selector):

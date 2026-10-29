@@ -6,7 +6,13 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from seoforge.report.present import PDFUnavailable, asset, export_report, from_audit, validate_report
+from seoforge.report.present import (
+    PDFUnavailable,
+    asset,
+    export_report,
+    from_audit,
+    validate_report,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 PDF_READY = bool(importlib.util.find_spec("reportlab") and importlib.util.find_spec("pypdf"))
@@ -46,7 +52,9 @@ class ReportTests(unittest.TestCase):
         self.assertEqual(data["client"], '<script>alert("x")</script>')
 
     def test_missing_pdf_dependency_preserves_html_and_reports_precise_limit(self):
-        with patch("seoforge.report.present.pdf_report", side_effect=PDFUnavailable("missing reportlab")):
+        with patch(
+            "seoforge.report.present.pdf_report", side_effect=PDFUnavailable("missing reportlab")
+        ):
             result = export_report(sample(), self.out)
         self.assertEqual(result["status"], "html_only")
         self.assertIn("missing reportlab", result["pdf_limitation"])

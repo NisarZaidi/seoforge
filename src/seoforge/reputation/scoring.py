@@ -5,10 +5,10 @@ from __future__ import annotations
 from pathlib import Path
 from urllib.parse import urlencode, urlsplit
 
-from seoforge.reputation.backlinks import check_sources
+from seoforge.analyze.review import read_json, save_report
 from seoforge.crawl.engine import write_csv
 from seoforge.crawl.network import normalize_url, utcnow
-from seoforge.analyze.review import read_json, save_report
+from seoforge.reputation.backlinks import check_sources
 
 MODEL_VERSION = "1.1"
 LOW_CONFIDENCE_CEILING = 49.0

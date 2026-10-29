@@ -6,14 +6,21 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-from seoforge.reputation.backlinks import source_rows
+from seoforge.research.profile.discovery import (
+    RequestBudget,
+    consolidate,
+    discover,
+    host_attempts,
+    parse_search,
+)
+
 from seoforge.analyze.diagnostics import failure_detail
-from seoforge.research.profile.discovery import RequestBudget, consolidate, discover, host_attempts, parse_search
+from seoforge.analyze.findings import audit_report
+from seoforge.analyze.review import readiness
 from seoforge.extract.evidence import capture_quality
 from seoforge.extract.html import extract, page_findings
-from seoforge.analyze.findings import audit_report
+from seoforge.reputation.backlinks import source_rows
 from seoforge.research.profile import FIELDS, profile, research_queries, select_competitors
-from seoforge.analyze.review import readiness
 
 DATE = "2026-01-01T00:00:00+00:00"
 DDG = '<div class="result"><a class="result__a" href="//duckduckgo.com/l/?uddg=https%3A%2F%2Fagency.test%2F">Agency</a><a class="result__snippet">A mention is only a lead.</a></div>'

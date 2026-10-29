@@ -17,9 +17,9 @@ from urllib.parse import urlsplit
 
 from seoforge import __version__
 from seoforge.analyze.diagnostics import classify_access, summarize_access
+from seoforge.crawl.network import RobotsCache, Transport, normalize_url, origin, utcnow
 from seoforge.extract.evidence import combined_index_signals, missing_content, selected_data
 from seoforge.extract.html import extract, index_signals, page_findings
-from seoforge.crawl.network import RobotsCache, Transport, normalize_url, origin, utcnow
 
 
 def write_json(path, value):

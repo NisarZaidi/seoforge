@@ -7,7 +7,13 @@ from pathlib import Path
 from unittest.mock import patch
 
 from seoforge.reputation.backlinks import source_rows
-from seoforge.reputation.scoring import assess, import_search_html, reputation, search_plan, source_score
+from seoforge.reputation.scoring import (
+    assess,
+    import_search_html,
+    reputation,
+    search_plan,
+    source_score,
+)
 
 TARGET = "https://example.com/"
 
@@ -194,7 +200,8 @@ class ReputationTests(unittest.TestCase):
             evidence = root / "evidence.json"
             evidence.write_text(json.dumps(payload))
             with patch(
-                "seoforge.reputation.scoring.check_sources", side_effect=AssertionError("Unexpected fetch")
+                "seoforge.reputation.scoring.check_sources",
+                side_effect=AssertionError("Unexpected fetch"),
             ):
                 result = reputation(None, TARGET, "Example", root / "report", evidence=evidence)
                 self.assertTrue(result["reused_evidence"])

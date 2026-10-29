@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 from typing import Any
+
 from seoforge.analyze.review import read_pages
 from seoforge.crawl.engine import write_json
 from seoforge.models import CompetitorComparison, Finding
@@ -61,11 +62,11 @@ def build_matrix(target_crawl: Path, competitor_crawls: list[Path]) -> Competito
         if summary.is_file():
             import json
 
-            competitor_seed = json.loads(summary.read_text(encoding="utf-8")).get("seed", str(crawl))
+            competitor_seed = json.loads(summary.read_text(encoding="utf-8")).get(
+                "seed", str(crawl)
+            )
         competitor_hosts.append(competitor_seed)
-        missing_titles = [
-            t for t in inv["titles"] if t and str(t).lower() not in target_titles
-        ][:8]
+        missing_titles = [t for t in inv["titles"] if t and str(t).lower() not in target_titles][:8]
         missing_schema = sorted(set(inv["schema_types"]) - target_schema)
         rows.append(
             {

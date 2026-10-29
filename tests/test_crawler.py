@@ -16,8 +16,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from seoforge import __version__
 from seoforge.analyze.diagnostics import challenge_signal
 from seoforge.crawl.engine import Crawler, csv_value, parse_sitemap
+from seoforge.crawl.network import (
+    Config,
+    RobotsCache,
+    RobotsRules,
+    Transport,
+    addresses,
+    normalize_url,
+)
 from seoforge.extract.html import extract, index_signals
-from seoforge.crawl.network import Config, RobotsCache, RobotsRules, Transport, addresses, normalize_url
 
 
 class Handler(BaseHTTPRequestHandler):

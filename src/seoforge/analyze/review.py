@@ -6,9 +6,9 @@ import json
 import re
 from pathlib import Path
 
+from seoforge.crawl.network import RobotsRules, origin, utcnow
 from seoforge.extract.evidence import capture_quality, missing_content, selected_data
 from seoforge.extract.html import index_signals
-from seoforge.crawl.network import RobotsRules, origin, utcnow
 
 
 def read_json(path):

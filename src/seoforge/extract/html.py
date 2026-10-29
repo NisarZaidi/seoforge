@@ -8,8 +8,8 @@ import re
 
 from bs4 import BeautifulSoup
 
-from seoforge.extract.content import markdown_from_html
 from seoforge.crawl.network import normalize_url
+from seoforge.extract.content import markdown_from_html
 
 
 def clean(value):
@@ -239,7 +239,12 @@ def index_signals(data, headers, status, final_url):
 
 
 def page_findings(page):
-    from seoforge.extract.evidence import capture_quality, combined_index_signals, missing_content, selected_data
+    from seoforge.extract.evidence import (
+        capture_quality,
+        combined_index_signals,
+        missing_content,
+        selected_data,
+    )
 
     issues = []
     url = page["url"]

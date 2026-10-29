@@ -9,10 +9,15 @@ import re
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from seoforge.crawl.engine import Crawler
-from seoforge.extract.evidence import capture_quality, combined_index_signals, missing_content, selected_data
-from seoforge.crawl.network import Config, normalize_url, utcnow
 from seoforge.analyze.review import read_json, read_pages, save_report
+from seoforge.crawl.engine import Crawler
+from seoforge.crawl.network import Config, normalize_url, utcnow
+from seoforge.extract.evidence import (
+    capture_quality,
+    combined_index_signals,
+    missing_content,
+    selected_data,
+)
 
 
 def source_rows(path):

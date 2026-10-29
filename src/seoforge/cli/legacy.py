@@ -145,9 +145,7 @@ def parser():
         p.add_argument("--no-color", action="store_true")
     p = sub.add_parser("report", help="Regenerate reports from an existing local crawl database.")
     p.add_argument("--out", type=Path, required=True)
-    p = sub.add_parser(
-        "present", help="Export an offline SeoForge-branded HTML/PDF client report."
-    )
+    p = sub.add_parser("present", help="Export an offline SeoForge-branded HTML/PDF client report.")
     source = p.add_mutually_exclusive_group(required=True)
     source.add_argument("--input", type=Path, help="Reviewed report-content JSON.")
     source.add_argument(

@@ -2,11 +2,11 @@
 
 from pathlib import Path
 
-from seoforge.crawl.engine import write_json
-from seoforge.extract.evidence import capture_quality
-from seoforge.crawl.network import utcnow
-from seoforge.research.profile import evidence_index, host, verify_reference
 from seoforge.analyze.review import read_json, read_pages
+from seoforge.crawl.engine import write_json
+from seoforge.crawl.network import utcnow
+from seoforge.extract.evidence import capture_quality
+from seoforge.research.profile import evidence_index, host, verify_reference
 
 CHECKS = {
     "duplicate_meta_description": (

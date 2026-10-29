@@ -5,9 +5,9 @@ from __future__ import annotations
 import time
 from pathlib import Path
 
+from seoforge.analyze.review import compare
 from seoforge.crawl.engine import Crawler, write_json
 from seoforge.crawl.network import utcnow
-from seoforge.analyze.review import compare
 
 
 def watch(config, out, cycles=3, interval=3600, quiet=False, sleep=time.sleep, selectors=None):

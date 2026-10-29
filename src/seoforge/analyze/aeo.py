@@ -87,10 +87,12 @@ def analyze_pages(pages: list[dict[str, Any]]) -> AnalyzerScore:
     ratio_schema = faq_schema_pages / usable
     score = round(
         100
-        * (0.30 * min(1.0, ratio_q * 2)
-           + 0.25 * min(1.0, ratio_faq * 3)
-           + 0.25 * min(1.0, ratio_answer * 2)
-           + 0.20 * min(1.0, ratio_schema * 4)),
+        * (
+            0.30 * min(1.0, ratio_q * 2)
+            + 0.25 * min(1.0, ratio_faq * 3)
+            + 0.25 * min(1.0, ratio_answer * 2)
+            + 0.20 * min(1.0, ratio_schema * 4)
+        ),
         1,
     )
 

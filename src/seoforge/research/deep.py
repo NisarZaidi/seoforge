@@ -8,11 +8,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlencode
 
+from seoforge.analyze.review import read_json, save_report
 from seoforge.crawl.engine import write_json
 from seoforge.crawl.network import normalize_url, utcnow
 from seoforge.reputation.scoring import assess, host
 from seoforge.research.profile import NON_SPECIFIC_MARKETS, research_queries
-from seoforge.analyze.review import read_json, save_report
 
 FAMILIES = ("brand_mentions", "domain_mentions", "reviews", "project_references", "partnerships")
 ROUTES = ["host_browser_google", "host_search", "duckduckgo-html", "bing-rss", "supplied_evidence"]

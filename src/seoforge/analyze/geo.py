@@ -52,7 +52,9 @@ def analyze_pages(pages: list[dict[str, Any]]) -> AnalyzerScore:
         quotable_count += len(QUOTABLE_RE.findall(text)[:3])
         links = data.get("links") or []
         if any(
-            isinstance(link, dict) and link.get("rel") != "internal" and str(link.get("href", "")).startswith("http")
+            isinstance(link, dict)
+            and link.get("rel") != "internal"
+            and str(link.get("href", "")).startswith("http")
             for link in links
         ) or any(isinstance(link, str) and link.startswith("http") for link in links):
             # Heuristic: outbound absolute links often present as strings or objects.

@@ -12,11 +12,11 @@ from unittest.mock import patch
 from urllib.parse import urlsplit
 
 from seoforge.cli.main import main
+from seoforge.cli.publishing import LocalStore, apply_change, stage
 from seoforge.crawl.doctor import check_environment
 from seoforge.crawl.engine import Crawler
-from seoforge.extract.html import extract, page_findings
 from seoforge.crawl.network import Config, Transport
-from seoforge.cli.publishing import LocalStore, apply_change, stage
+from seoforge.extract.html import extract, page_findings
 
 
 class DepthValidationTests(unittest.TestCase):
@@ -298,7 +298,9 @@ class DepthValidationTests(unittest.TestCase):
         }
         with (
             patch("seoforge.crawl.doctor.environment_report", return_value=environment),
-            patch("seoforge.crawl.network.addresses", side_effect=OSError("name or service not known")),
+            patch(
+                "seoforge.crawl.network.addresses", side_effect=OSError("name or service not known")
+            ),
             patch.object(Transport, "once") as fetch,
             contextlib.redirect_stdout(io.StringIO()) as output,
         ):

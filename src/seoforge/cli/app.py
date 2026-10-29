@@ -343,13 +343,11 @@ def discover_cmd(
 ) -> None:
     """Collect unverified search leads with bounded native fallbacks."""
     try:
-        from seoforge.research.discovery import PROVIDERS, discover
         from seoforge.analyze.review import read_json
+        from seoforge.research.discovery import PROVIDERS, discover
 
         query_rows = read_json(queries) if queries else []
-        query_rows += [
-            {"query": q, "market": market, "language": language} for q in (query or [])
-        ]
+        query_rows += [{"query": q, "market": market, "language": language} for q in (query or [])]
         if not query_rows:
             raise SeoForgeError("Provide --query and/or --queries JSON.")
         if not json_output:

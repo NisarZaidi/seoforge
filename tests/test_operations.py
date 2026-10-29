@@ -8,13 +8,13 @@ from unittest.mock import Mock, patch
 
 from test_crawler import CrawlerTests
 
-from seoforge.reputation.backlinks import check_sources
+from seoforge.analyze.review import compare, readiness
+from seoforge.cli.publishing import LocalStore, RemoteStore, apply_change, digest, stage
 from seoforge.crawl.engine import write_json
-from seoforge.extract.html import extract
 from seoforge.crawl.monitor import watch
 from seoforge.crawl.network import RobotsRules
-from seoforge.cli.publishing import LocalStore, RemoteStore, apply_change, digest, stage
-from seoforge.analyze.review import compare, readiness
+from seoforge.extract.html import extract
+from seoforge.reputation.backlinks import check_sources
 
 
 class ReviewTests(unittest.TestCase):

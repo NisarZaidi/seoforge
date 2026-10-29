@@ -508,7 +508,9 @@ def dashboard_html(state):
         return html.escape(str(value), quote=True)
 
     logo = base64.b64encode(
-        (Path(__file__).resolve().parents[1] / "report" / "assets" / "seoforge-logo.png").read_bytes()
+        (
+            Path(__file__).resolve().parents[1] / "report" / "assets" / "seoforge-logo.png"
+        ).read_bytes()
     ).decode()
 
     def verification_html(job):

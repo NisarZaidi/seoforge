@@ -241,10 +241,10 @@ def check_environment(target=None, query=None, out=None):
                 "blocks_crawling": False,
             }
             if target and result["http_ready"]:
-                from seoforge.crawl.engine import Crawler
-                from seoforge.extract.evidence import capture_quality
-                from seoforge.crawl.network import Config, addresses
                 from seoforge.analyze.review import read_pages
+                from seoforge.crawl.engine import Crawler
+                from seoforge.crawl.network import Config, addresses
+                from seoforge.extract.evidence import capture_quality
 
                 config = Config(
                     target,

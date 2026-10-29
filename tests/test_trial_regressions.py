@@ -7,11 +7,11 @@ from collections import Counter
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-from seoforge.reputation.backlinks import mention_evidence, verify_source
 from seoforge.crawl.engine import Crawler
+from seoforge.crawl.network import Config
 from seoforge.extract.evidence import combined_index_signals, missing_content, selected_data
 from seoforge.extract.html import extract, page_findings
-from seoforge.crawl.network import Config
+from seoforge.reputation.backlinks import mention_evidence, verify_source
 
 
 def page(raw, rendered=None):

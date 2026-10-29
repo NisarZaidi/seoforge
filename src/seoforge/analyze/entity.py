@@ -9,7 +9,9 @@ from seoforge.models import AnalyzerScore, Finding
 
 NAP_PHONE = re.compile(r"(\+?\d[\d\s().-]{7,}\d)")
 NAP_EMAIL = re.compile(r"[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}", re.I)
-SAME_AS_HINT = re.compile(r"sameAs|linkedin\.com|facebook\.com|twitter\.com|x\.com|instagram\.com", re.I)
+SAME_AS_HINT = re.compile(
+    r"sameAs|linkedin\.com|facebook\.com|twitter\.com|x\.com|instagram\.com", re.I
+)
 
 
 def _jsonld_entities(page: dict[str, Any]) -> list[dict[str, Any]]:
@@ -27,7 +29,10 @@ def _jsonld_entities(page: dict[str, Any]) -> list[dict[str, Any]]:
         types = node.get("@type", [])
         if isinstance(types, str):
             types = [types]
-        if any(str(t).lower() in {"organization", "localbusiness", "person", "corporation"} for t in types):
+        if any(
+            str(t).lower() in {"organization", "localbusiness", "person", "corporation"}
+            for t in types
+        ):
             entities.append(node)
         for value in node.values():
             if isinstance(value, (dict, list)):

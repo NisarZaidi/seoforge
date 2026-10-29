@@ -253,7 +253,9 @@ class HostingTransportTests(unittest.TestCase):
                     pass
                 context = ssl.create_default_context(cafile=str(certfile))
                 assert context.verify_mode == ssl.CERT_REQUIRED and context.check_hostname
-                with patch("seoforge.cli.publishing.ssl.create_default_context", return_value=context):
+                with patch(
+                    "seoforge.cli.publishing.ssl.create_default_context", return_value=context
+                ):
                     store = RemoteStore(profile)
                 try:
                     result = stage(store, "index.html", draft, root / "plan")

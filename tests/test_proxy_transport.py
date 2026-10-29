@@ -103,7 +103,9 @@ class ProxyTransportTests(unittest.TestCase):
     def test_dns_failure_does_not_fall_back_to_unverified_proxy_dns(self):
         with (
             patch.dict("os.environ", {"https_proxy": "http://proxy.test:8123"}),
-            patch("seoforge.crawl.network.addresses", side_effect=socket.gaierror("DNS unavailable")),
+            patch(
+                "seoforge.crawl.network.addresses", side_effect=socket.gaierror("DNS unavailable")
+            ),
             patch("seoforge.crawl.network.socket.create_connection") as connect,
         ):
             result = Transport(Config("https://example.com", delay=0, retries=0)).fetch(

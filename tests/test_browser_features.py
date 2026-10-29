@@ -3,9 +3,9 @@ import unittest
 
 from test_crawler import CrawlerTests, Handler
 
+from seoforge.crawl.render import needs_browser
 from seoforge.extract.content import markdown_from_html
 from seoforge.extract.html import extract
-from seoforge.crawl.render import needs_browser
 
 
 class BrowserFeatureTests(CrawlerTests):

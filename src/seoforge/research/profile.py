@@ -11,10 +11,10 @@ import re
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from seoforge.crawl.engine import write_json
-from seoforge.extract.evidence import capture_quality, selected_data
-from seoforge.crawl.network import normalize_url, utcnow
 from seoforge.analyze.review import read_json, read_pages
+from seoforge.crawl.engine import write_json
+from seoforge.crawl.network import normalize_url, utcnow
+from seoforge.extract.evidence import capture_quality, selected_data
 
 FIELDS = (
     "business_category",

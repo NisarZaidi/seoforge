@@ -66,11 +66,11 @@ def add_commands(sub):
 
 
 def execute(args):
+    from seoforge.analyze.findings import audit_report
+    from seoforge.analyze.review import read_json
     from seoforge.reputation.backlinks import source_rows
     from seoforge.research.discovery import PROVIDERS, discover, host_attempts
-    from seoforge.analyze.findings import audit_report
     from seoforge.research.profile import profile, select_competitors
-    from seoforge.analyze.review import read_json
 
     if args.command == "research-plan":
         from seoforge.research.deep import research_plan

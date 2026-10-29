@@ -5,8 +5,8 @@ import time
 from dataclasses import replace
 from urllib.parse import urlsplit
 
-from seoforge.extract.html import extract
 from seoforge.crawl.network import RobotsCache, Transport, normalize_url, utcnow
+from seoforge.extract.html import extract
 
 
 def needs_browser(data):

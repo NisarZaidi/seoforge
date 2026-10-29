@@ -6,6 +6,12 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
+from seoforge.analyze.diagnostics import failure_detail
+from seoforge.analyze.findings import audit_report
+from seoforge.analyze.review import readiness
+from seoforge.extract.evidence import capture_quality
+from seoforge.extract.html import extract, page_findings
+from seoforge.reputation.backlinks import source_rows
 from seoforge.research.discovery import (
     RequestBudget,
     consolidate,
@@ -13,13 +19,6 @@ from seoforge.research.discovery import (
     host_attempts,
     parse_search,
 )
-
-from seoforge.analyze.diagnostics import failure_detail
-from seoforge.analyze.findings import audit_report
-from seoforge.analyze.review import readiness
-from seoforge.extract.evidence import capture_quality
-from seoforge.extract.html import extract, page_findings
-from seoforge.reputation.backlinks import source_rows
 from seoforge.research.profile import FIELDS, profile, research_queries, select_competitors
 
 DATE = "2026-01-01T00:00:00+00:00"

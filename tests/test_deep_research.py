@@ -5,9 +5,8 @@ import unittest
 from datetime import datetime
 from pathlib import Path
 
-from seoforge.research.deep import compare_reputation, research_plan
-
 from seoforge.reputation.scoring import assess
+from seoforge.research.deep import compare_reputation, research_plan
 
 DATE = "2026-09-16T00:00:00+00:00"
 NOW = datetime.fromisoformat(DATE)

@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-from seoforge.research.profile.discovery import (
+from seoforge.research.discovery import (
     RequestBudget,
     consolidate,
     discover,

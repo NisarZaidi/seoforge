@@ -5,11 +5,12 @@ from __future__ import annotations
 import sys
 
 # Commands implemented on the Typer + Rich app.
+# `crawl` stays on legacy argparse so full crawl flags (--delay, --only-url,
+# --resume, --next-pages, …) keep working for scripts and the test suite.
 MODERN = {
     "version",
     "doctor",
     "audit",
-    "crawl",
     "compete",
     "discover",
     "reputation",
@@ -31,7 +32,7 @@ def main(argv: list[str] | None = None) -> int:
         code = run(["--help"])
         print(
             "\nAlso available (legacy argparse):\n"
-            "  scrape, watch, present, readiness, compare, backlinks,\n"
+            "  crawl, scrape, watch, present, readiness, compare, backlinks,\n"
             "  search-plan, search-import, profile, competitors,\n"
             "  research-plan, compare-reputation, browser-setup, edit,\n"
             "  project, onsite\n"

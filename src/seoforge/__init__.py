@@ -1,7 +1,7 @@
 """SeoForge — native SEO/AEO/GEO crawler and evidence toolkit."""
 
 __version__ = "0.2.1"
-__all__ = ["Config", "Crawler", "__version__"]
+__all__ = ["Config", "Crawler", "projects", "__version__"]
 
 
 def __getattr__(name):
@@ -13,4 +13,8 @@ def __getattr__(name):
         from seoforge.crawl.engine import Crawler
 
         return Crawler
+    if name == "projects":
+        from seoforge.cli import projects
+
+        return projects
     raise AttributeError(name)
